@@ -425,16 +425,15 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, 220px);
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 300px 300px 240px;
             gap: 8px;
         }
         .gallery-item {
             overflow: hidden; position: relative; cursor: pointer;
         }
-        .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
-        .gallery-item:nth-child(5) { grid-column: 3 / 5; grid-row: 2 / 4; }
-        .gallery-item:nth-child(9) { grid-column: 1 / 2; grid-row: 2 / 4; }
+        /* Poza 1 mare — ocupa 2 coloane si 2 randuri */
+        .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; }
 
         .gallery-item img {
             width: 100%; height: 100%;
@@ -724,10 +723,8 @@
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
-            .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 200px); }
-            .gallery-item:nth-child(1) { grid-column: 1 / 3; }
-            .gallery-item:nth-child(5) { grid-column: 2 / 4; grid-row: 3 / 5; }
-            .gallery-item:nth-child(9) { grid-column: 1 / 2; grid-row: 3 / 5; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 220px); }
+            .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
             .about-img-accent { display: none; }
         }
         @media (max-width: 900px) {
@@ -744,10 +741,8 @@
             .nav-links a { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07); width: 100%; font-size: 0.9rem; }
             .nav-links .btn { margin: 1rem 0 0; }
             .nav-toggle { display: flex; margin-left: auto; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(6, 160px); }
-            .gallery-item:nth-child(1) { grid-column: 1 / 3; }
-            .gallery-item:nth-child(5) { grid-column: auto; grid-row: auto; }
-            .gallery-item:nth-child(9) { grid-column: auto; grid-row: auto; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 200px); }
+            .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
             .hero-buttons { flex-direction: column; align-items: center; }
             .form-row { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; }
@@ -755,8 +750,8 @@
             .info-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); max-width: 100%; }
         }
         @media (max-width: 480px) {
-            .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(12, 200px); }
-            .gallery-item:nth-child(n) { grid-column: auto; grid-row: auto; }
+            .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(6, 220px); }
+            .gallery-item:nth-child(1) { grid-column: auto; grid-row: auto; }
         }
     </style>
 </head>
@@ -1371,48 +1366,34 @@
             <div class="section-divider center"></div>
         </div>
         <div class="gallery-grid fade-up">
+            <!-- 1: mare (2col x 2row) — sala cu arcade, cea mai eleganta -->
             <div class="gallery-item" onclick="openLightbox(0)">
-                <img src="1.jpeg" alt="Restaurant Armenia – Gastraum">
+                <img src="2.jpeg" alt="Eleganter Gastraum mit Bögen">
                 <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
             </div>
+            <!-- 2: col 3 row 1 — bar cu LED turcoaz -->
             <div class="gallery-item" onclick="openLightbox(1)">
-                <img src="2.jpeg" alt="Elegant gedeckte Tische">
-                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox(2)">
-                <img src="3.jpeg" alt="Gastraum Übersicht">
-                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox(3)">
-                <img src="4.jpeg" alt="Abendstimmung">
-                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox(4)">
                 <img src="5.jpeg" alt="Bar mit Türkis-Beleuchtung">
                 <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
             </div>
+            <!-- 3: col 3 row 2 — murala Ararat -->
+            <div class="gallery-item" onclick="openLightbox(2)">
+                <img src="8.jpeg" alt="Ararat-Wandgemälde">
+                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <!-- 4: col 1 row 3 — vedere de ansamblu -->
+            <div class="gallery-item" onclick="openLightbox(3)">
+                <img src="1.jpeg" alt="Restaurant Armenia – Gesamtansicht">
+                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <!-- 5: col 2 row 3 — atmosfera de seara -->
+            <div class="gallery-item" onclick="openLightbox(4)">
+                <img src="6.jpeg" alt="Abendatmosphäre">
+                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <!-- 6: col 3 row 3 — arcade cu plante -->
             <div class="gallery-item" onclick="openLightbox(5)">
-                <img src="6.jpeg" alt="Atmosphärische Beleuchtung">
-                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox(6)">
-                <img src="7.jpeg" alt="Bar Bereich">
-                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox(7)">
-                <img src="8.jpeg" alt="Ararat Wandgemälde">
-                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox(8)">
-                <img src="9.jpeg" alt="Hängende Blumen und Pflanzen">
-                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox(9)">
-                <img src="10.jpeg" alt="Bögen und Pflanzen">
-                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox(10)">
-                <img src="12.jpeg" alt="Klassischer Gastraum">
+                <img src="10.jpeg" alt="Bögen und Grünpflanzen">
                 <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
             </div>
         </div>
@@ -1726,7 +1707,7 @@
     });
 
     /* ===== LIGHTBOX ===== */
-    const images = ['1.jpeg','2.jpeg','3.jpeg','4.jpeg','5.jpeg','6.jpeg','7.jpeg','8.jpeg','9.jpeg','10.jpeg','12.jpeg'];
+    const images = ['2.jpeg','5.jpeg','8.jpeg','1.jpeg','6.jpeg','10.jpeg'];
     let currentImg = 0;
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
