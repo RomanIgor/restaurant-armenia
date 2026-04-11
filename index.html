@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Armenia – Armenische Küche in Chemnitz</title>
+    <meta name="description" content="Sachsens erstes armenisches Spezialitätenrestaurant in Chemnitz. Authentische Aromen aus dem Kaukasus – seit Jahren Ihr Gastgeber für besondere Momente.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========== RESET & BASE ========== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'Open Sans', sans-serif; color: #2E2A27; background: #F8F4ED; overflow-x: hidden; }
+        img { display: block; max-width: 100%; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* ========== VARIABLES ========== */
+        :root {
+            --red:      #8B1A2B;
+            --red-dark: #5A0F1A;
+            --red-light:#B5263A;
+            --gold:     #C5A028;
+            --gold-light:#E2C455;
+            --cream:    #F8F4ED;
+            --cream-dark:#EDE5D8;
+            --dark:     #1C1A18;
+            --text:     #2E2A27;
+            --stone:    #9C8F84;
+            --white:    #FFFFFF;
+            --nav-h:    72px;
+            --section-pad: 90px;
+        }
+
+        /* ========== TYPOGRAPHY ========== */
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; }
+        h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); }
+        p  { line-height: 1.8; color: #4A4540; }
+
+        .section-label {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        .section-divider {
+            width: 48px; height: 2px;
+            background: var(--gold);
+            margin: 1.25rem 0 2rem;
+        }
+        .section-divider.center { margin: 1.25rem auto 2rem; }
+
+        /* ========== BUTTONS ========== */
+        .btn {
+            display: inline-block;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 14px 36px;
+            border: none; cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: var(--red);
+            color: var(--white);
+        }
+        .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139,26,43,0.35); }
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.7);
+        }
+        .btn-outline:hover { background: var(--white); color: var(--dark); }
+        .btn-gold {
+            background: var(--gold);
+            color: var(--dark);
+        }
+        .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+        /* ========== NAVIGATION ========== */
+        #navbar {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            height: var(--nav-h);
+            display: flex; align-items: center;
+            padding: 0 5%;
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+        }
+        #navbar.scrolled {
+            background: rgba(28, 26, 24, 0.97);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+            backdrop-filter: blur(8px);
+        }
+        #navbar:not(.scrolled) { background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%); }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            flex: 0 0 auto;
+            line-height: 1;
+        }
+        .nav-logo span { color: var(--gold); }
+
+        .nav-links {
+            display: flex; align-items: center; gap: 2rem;
+            margin-left: auto;
+        }
+        .nav-links a {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+            transition: color 0.25s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover { color: var(--white); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links .btn { margin-left: 0.5rem; padding: 10px 22px; font-size: 0.75rem; }
+
+        /* hamburger */
+        .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100; }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); transition: all 0.3s; }
+        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ========== HERO ========== */
+        #home {
+            position: relative;
+            height: 100vh; min-height: 600px;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: url('9.jpeg') center center / cover no-repeat;
+            transform: scale(1.06);
+            transition: transform 8s ease;
+        }
+        #home:hover .hero-bg { transform: scale(1.0); }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(10,6,4,0.45) 0%,
+                rgba(10,6,4,0.60) 50%,
+                rgba(10,6,4,0.75) 100%
+            );
+        }
+        .hero-content {
+            position: relative; z-index: 2;
+            max-width: 760px; padding: 0 1.5rem;
+        }
+        .hero-eyebrow {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 1.2rem;
+        }
+        .hero-subtitle {
+            font-family: 'Raleway', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-weight: 300;
+            color: rgba(255,255,255,0.85);
+            letter-spacing: 0.08em;
+            margin-bottom: 2.5rem;
+        }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        .hero-scroll {
+            position: absolute; bottom: 2rem; left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex; flex-direction: column; align-items: center; gap: 6px;
+        }
+        .hero-scroll span {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+        .scroll-line {
+            width: 1px; height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.5; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.1); }
+        }
+
+        /* ========== INFO STRIP ========== */
+        .info-strip {
+            background: var(--dark);
+            display: flex; justify-content: center; flex-wrap: wrap;
+            gap: 0;
+        }
+        .info-item {
+            flex: 1 1 200px; max-width: 320px;
+            display: flex; align-items: center; gap: 14px;
+            padding: 22px 32px;
+            border-right: 1px solid rgba(255,255,255,0.07);
+            color: rgba(255,255,255,0.75);
+        }
+        .info-item:last-child { border-right: none; }
+        .info-icon { font-size: 1.3rem; color: var(--gold); flex-shrink: 0; }
+        .info-text { font-family: 'Raleway', sans-serif; font-size: 0.78rem; line-height: 1.5; }
+        .info-text strong { display: block; color: var(--white); font-size: 0.82rem; }
+
+        /* ========== SECTIONS COMMON ========== */
+        .section { padding: var(--section-pad) 5%; }
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+        .section-header { margin-bottom: 3rem; }
+        .section-header.center { text-align: center; }
+
+        /* ========== ABOUT / RESTAURANT ========== */
+        #restaurant { background: var(--white); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-img-wrap {
+            position: relative;
+        }
+        .about-img-wrap img {
+            width: 100%; height: 520px;
+            object-fit: cover;
+        }
+        .about-img-accent {
+            position: absolute;
+            bottom: -20px; right: -20px;
+            width: 200px; height: 200px;
+            border: 3px solid var(--gold);
+            z-index: -1;
+        }
+        .about-text { padding-right: 1rem; }
+        .about-text h2 { margin-bottom: 0; }
+        .about-text p { margin-bottom: 1.2rem; }
+        .about-highlights {
+            display: flex; gap: 2rem; margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .highlight-item { flex: 1 1 120px; }
+        .highlight-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem; font-weight: 700;
+            color: var(--red); line-height: 1;
+        }
+        .highlight-label {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.72rem; letter-spacing: 0.15em;
+            text-transform: uppercase; color: var(--stone);
+            margin-top: 4px;
+        }
+
+        /* ========== SPEISEKARTE ========== */
+        #speisekarte { background: var(--dark); }
+        #speisekarte .section-label { color: var(--gold); }
+        #speisekarte h2 { color: var(--white); }
+        #speisekarte .section-divider { background: var(--gold); }
+
+        .menu-tabs {
+            display: flex; flex-wrap: wrap; gap: 0.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .menu-tab {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            padding: 9px 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.55);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .menu-tab:hover { border-color: var(--gold); color: var(--gold); }
+        .menu-tab.active { background: var(--red); border-color: var(--red); color: var(--white); }
+
+        .menu-panel { display: none; }
+        .menu-panel.active { display: block; }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 0;
+        }
+        .menu-item {
+            display: flex; justify-content: space-between; align-items: baseline;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            gap: 1rem;
+        }
+        .menu-item:last-child { border-bottom: none; }
+        .menu-item-left { flex: 1; }
+        .menu-item-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem; font-weight: 600;
+            color: var(--white); margin-bottom: 3px;
+        }
+        .menu-item-desc {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.5;
+        }
+        .menu-item-price {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.9rem; font-weight: 600;
+            color: var(--gold);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .menu-note {
+            margin-top: 2rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            text-align: center;
+        }
+
+        /* ========== ARMENIEN ========== */
+        #armenien {
+            position: relative;
+            overflow: hidden;
+        }
+        .armenien-bg {
+            position: absolute; inset: 0;
+            background: url('8.jpeg') center center / cover no-repeat;
+        }
+        .armenien-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(90,15,26,0.92) 0%, rgba(28,26,24,0.88) 100%);
+        }
+        .armenien-content { position: relative; z-index: 2; }
+        #armenien .section-label { color: var(--gold); }
+        #armenien h2 { color: var(--white); }
+        #armenien .section-divider { background: var(--gold); }
+
+        .armenien-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .armenien-text p { color: rgba(255,255,255,0.8); margin-bottom: 1.2rem; }
+
+        .armenien-cards {
+            display: flex; flex-direction: column; gap: 1.2rem;
+        }
+        .armenien-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(197,160,40,0.25);
+            padding: 1.5rem;
+            transition: border-color 0.3s;
+        }
+        .armenien-card:hover { border-color: var(--gold); }
+        .armenien-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold); font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .armenien-card p { color: rgba(255,255,255,0.65); font-size: 0.88rem; margin: 0; }
+
+        /* ========== GALERIE ========== */
+        #galerie { background: var(--cream); }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 220px);
+            gap: 8px;
+        }
+        .gallery-item {
+            overflow: hidden; position: relative; cursor: pointer;
+        }
+        .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
+        .gallery-item:nth-child(5) { grid-column: 3 / 5; grid-row: 2 / 4; }
+        .gallery-item:nth-child(9) { grid-column: 1 / 2; grid-row: 2 / 4; }
+
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img { transform: scale(1.07); }
+        .gallery-overlay {
+            position: absolute; inset: 0;
+            background: rgba(139,26,43,0.0);
+            transition: background 0.3s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .gallery-item:hover .gallery-overlay { background: rgba(139,26,43,0.35); }
+        .gallery-overlay svg { opacity: 0; transition: opacity 0.3s; fill: white; width: 36px; }
+        .gallery-item:hover .gallery-overlay svg { opacity: 1; }
+
+        /* lightbox */
+        .lightbox {
+            display: none; position: fixed; inset: 0; z-index: 9000;
+            background: rgba(0,0,0,0.92);
+            align-items: center; justify-content: center;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; }
+        .lightbox-close {
+            position: absolute; top: 1.5rem; right: 2rem;
+            font-size: 2rem; color: white; cursor: pointer;
+            line-height: 1; font-family: sans-serif;
+            background: none; border: none;
+        }
+        .lightbox-close:hover { color: var(--gold); }
+        .lightbox-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white; font-size: 1.5rem;
+            width: 48px; height: 48px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: background 0.2s;
+        }
+        .lightbox-arrow:hover { background: var(--red); border-color: var(--red); }
+        .lightbox-arrow.prev { left: 1.5rem; }
+        .lightbox-arrow.next { right: 1.5rem; }
+
+        /* ========== KONTAKT ========== */
+        #kontakt { background: var(--white); }
+        .kontakt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .kontakt-info-block { margin-bottom: 2.2rem; }
+        .kontakt-info-block h4 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.7rem; font-weight: 700;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--red); margin-bottom: 0.8rem;
+        }
+        .kontakt-info-block p, .kontakt-info-block a {
+            font-size: 0.95rem; line-height: 1.9; color: var(--text);
+        }
+        .kontakt-info-block a:hover { color: var(--red); }
+
+        .hours-table { width: 100%; }
+        .hours-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid var(--cream-dark); }
+        .hours-row:last-child { border-bottom: none; }
+        .hours-day { font-size: 0.88rem; color: var(--stone); }
+        .hours-time { font-size: 0.88rem; font-weight: 600; }
+        .hours-closed { color: var(--stone); font-style: italic; }
+
+        /* form */
+        .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group label {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone);
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            padding: 12px 14px;
+            border: 1px solid var(--cream-dark);
+            background: var(--cream);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem; color: var(--text);
+            transition: border-color 0.25s;
+            outline: none;
+            border-radius: 0;
+            appearance: none;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--red);
+            background: var(--white);
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .form-success {
+            display: none; padding: 14px;
+            background: rgba(139,26,43,0.08);
+            border-left: 3px solid var(--red);
+            font-size: 0.9rem; color: var(--red);
+        }
+
+        /* ========== ANFAHRT ========== */
+        #anfahrt {
+            background: var(--cream-dark);
+            padding: 0;
+            height: 360px;
+        }
+        .map-placeholder {
+            width: 100%; height: 100%;
+            background: var(--dark);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 1rem;
+            color: rgba(255,255,255,0.5);
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.85rem; letter-spacing: 0.1em;
+        }
+        .map-placeholder svg { width: 40px; fill: var(--gold); opacity: 0.7; }
+        .map-placeholder a { color: var(--gold); text-decoration: underline; }
+
+        /* ========== FOOTER ========== */
+        footer { background: var(--dark); color: rgba(255,255,255,0.55); padding: 50px 5% 30px; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; }
+        .footer-brand .nav-logo { font-size: 1.6rem; margin-bottom: 0.8rem; }
+        .footer-brand p { font-size: 0.85rem; line-height: 1.8; max-width: 280px; }
+        .footer-col h5 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.7rem; font-weight: 700;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: rgba(255,255,255,0.85); margin-bottom: 1rem;
+        }
+        .footer-col ul li { margin-bottom: 0.55rem; }
+        .footer-col ul li a {
+            font-size: 0.85rem; color: rgba(255,255,255,0.5);
+            transition: color 0.25s;
+        }
+        .footer-col ul li a:hover { color: var(--gold); }
+        .footer-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            font-size: 0.78rem;
+            flex-wrap: wrap; gap: 0.5rem;
+        }
+        .footer-bottom a { color: rgba(255,255,255,0.4); transition: color 0.25s; }
+        .footer-bottom a:hover { color: var(--gold); }
+
+        /* social */
+        .social-links { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
+        .social-link {
+            width: 36px; height: 36px;
+            border: 1px solid rgba(255,255,255,0.15);
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.5);
+            transition: all 0.25s;
+            font-size: 0.9rem;
+        }
+        .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* ========== ANIMATIONS ========== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-up.delay-1 { transition-delay: 0.15s; }
+        .fade-up.delay-2 { transition-delay: 0.3s; }
+        .fade-up.delay-3 { transition-delay: 0.45s; }
+
+        /* ========== RESERVATION FLOATING ========== */
+        .fab {
+            position: fixed;
+            bottom: 2rem; right: 2rem;
+            z-index: 500;
+            display: flex; align-items: center; gap: 10px;
+            background: var(--red);
+            color: white;
+            padding: 13px 22px;
+            box-shadow: 0 4px 20px rgba(139,26,43,0.5);
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.72rem; font-weight: 700;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        .fab:hover { background: var(--red-dark); box-shadow: 0 6px 28px rgba(139,26,43,0.65); transform: translateY(-2px); }
+        .fab svg { width: 16px; fill: white; }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 200px); }
+            .gallery-item:nth-child(1) { grid-column: 1 / 3; }
+            .gallery-item:nth-child(5) { grid-column: 2 / 4; grid-row: 3 / 5; }
+            .gallery-item:nth-child(9) { grid-column: 1 / 2; grid-row: 3 / 5; }
+            .about-img-accent { display: none; }
+        }
+        @media (max-width: 900px) {
+            :root { --section-pad: 64px; }
+            .about-grid, .armenien-grid, .kontakt-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .about-img-wrap img { height: 380px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-brand { grid-column: 1 / -1; }
+            .menu-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; align-items: flex-start; gap: 0; position: fixed; top: 0; right: 0; bottom: 0; width: 280px; background: var(--dark); padding: calc(var(--nav-h) + 1rem) 2rem 2rem; box-shadow: -5px 0 30px rgba(0,0,0,0.5); }
+            .nav-links.open { display: flex; }
+            .nav-links a { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07); width: 100%; font-size: 0.9rem; }
+            .nav-links .btn { margin: 1rem 0 0; }
+            .nav-toggle { display: flex; margin-left: auto; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(6, 160px); }
+            .gallery-item:nth-child(1) { grid-column: 1 / 3; }
+            .gallery-item:nth-child(5) { grid-column: auto; grid-row: auto; }
+            .gallery-item:nth-child(9) { grid-column: auto; grid-row: auto; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .info-strip { flex-direction: column; }
+            .info-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); max-width: 100%; }
+        }
+        @media (max-width: 480px) {
+            .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(12, 200px); }
+            .gallery-item:nth-child(n) { grid-column: auto; grid-row: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+    <a href="#home" class="nav-logo">Restaurant <span>Armenia</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#restaurant">Restaurant</a></li>
+        <li><a href="#speisekarte">Speisekarte</a></li>
+        <li><a href="#armenien">Armenien</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="tel:+4937147903 58" class="btn btn-primary">Reservieren</a></li>
+    </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="home">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <span class="hero-eyebrow">Chemnitz · Sachsens erstes armenisches Restaurant</span>
+        <h1 class="hero-title">Restaurant<br>Armenia</h1>
+        <p class="hero-subtitle">Authentische Aromen aus dem Herzen des Kaukasus</p>
+        <div class="hero-buttons">
+            <a href="#speisekarte" class="btn btn-primary">Zur Speisekarte</a>
+            <a href="tel:+4937147903 58" class="btn btn-outline">Tisch reservieren</a>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>Entdecken</span>
+    </div>
+</section>
+
+<!-- ===== INFO STRIP ===== -->
+<div class="info-strip">
+    <div class="info-item fade-up">
+        <div class="info-icon">📍</div>
+        <div class="info-text">
+            <strong>Blankenauer Str. 75</strong>
+            09113 Chemnitz
+        </div>
+    </div>
+    <div class="info-item fade-up delay-1">
+        <div class="info-icon">⏰</div>
+        <div class="info-text">
+            <strong>Di – Fr: 17:00 – 22:00</strong>
+            Sa: 11:30 – 24:00 · So: 11:30 – 22:00
+        </div>
+    </div>
+    <div class="info-item fade-up delay-2">
+        <div class="info-icon">📞</div>
+        <div class="info-text">
+            <strong><a href="tel:+4937147903 58" style="color:white;">+49 371 479 03 58</a></strong>
+            info@restaurant-armenia.de
+        </div>
+    </div>
+    <div class="info-item fade-up delay-3">
+        <div class="info-icon">🍷</div>
+        <div class="info-text">
+            <strong>Tischreservierung</strong>
+            Auf Anfrage & telefonisch
+        </div>
+    </div>
+</div>
+
+<!-- ===== RESTAURANT / ABOUT ===== -->
+<section id="restaurant" class="section">
+    <div class="section-inner">
+        <div class="about-grid">
+            <div class="about-img-wrap fade-up">
+                <img src="2.jpeg" alt="Eleganter Gastraum im Restaurant Armenia">
+                <div class="about-img-accent"></div>
+            </div>
+            <div class="about-text fade-up delay-1">
+                <span class="section-label">Unser Restaurant</span>
+                <h2>Willkommen bei Restaurant Armenia</h2>
+                <div class="section-divider"></div>
+                <p>
+                    Mitten in Chemnitz öffnet sich eine Tür in eine andere Welt – das <strong>Restaurant Armenia</strong>,
+                    Sachsens erstes und einziges armenisches Spezialitätenrestaurant. Hier verbinden sich jahrtausendealte
+                    Kochtraditionen aus dem Kaukasus mit herzlicher Gastfreundschaft.
+                </p>
+                <p>
+                    In unserem stilvollen Gastraum mit seinen charakteristischen Bogendurchgängen, dem warmen Licht und
+                    den üppigen Pflanzen entsteht eine Atmosphäre, die gleichzeitig elegant und einladend ist –
+                    der ideale Rahmen für ein besonderes Abendessen, eine Geburtstagsfeier oder einen Familienabend.
+                </p>
+                <p>
+                    Unser Küchenchef verwöhnt Sie mit authentischen armenischen Rezepten, frischen Zutaten und Gewürzen,
+                    die direkt an die Aromen des Ararat-Landes erinnern.
+                </p>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-num">45+</div>
+                        <div class="highlight-label">Gerichte</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-num">1</div>
+                        <div class="highlight-label">In Sachsen</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-num">100%</div>
+                        <div class="highlight-label">Authentisch</div>
+                    </div>
+                </div>
+                <a href="#speisekarte" class="btn btn-primary">Speisekarte ansehen</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SPEISEKARTE ===== -->
+<section id="speisekarte" class="section">
+    <div class="section-inner">
+        <div class="section-header center fade-up">
+            <span class="section-label">Unsere Küche</span>
+            <h2 style="color:var(--white);">Speisekarte</h2>
+            <div class="section-divider center"></div>
+            <p style="color:rgba(255,255,255,0.55); max-width:560px; margin:0 auto;">
+                Von der armenischen Suppenküche bis zum gegrillten Schaschlik – jedes Gericht erzählt eine Geschichte aus dem Kaukasus.
+            </p>
+        </div>
+
+        <div class="menu-tabs" id="menuTabs">
+            <button class="menu-tab active" data-tab="suppen">Suppen</button>
+            <button class="menu-tab" data-tab="salate">Salate</button>
+            <button class="menu-tab" data-tab="spezialitaeten">Armenische Spezialitäten</button>
+            <button class="menu-tab" data-tab="fisch">Fischgerichte</button>
+            <button class="menu-tab" data-tab="vegetarisch">Vegetarisch</button>
+            <button class="menu-tab" data-tab="gerichte">Gerichte</button>
+        </div>
+
+        <!-- SUPPEN -->
+        <div class="menu-panel active" id="panel-suppen">
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Arganak</div>
+                        <div class="menu-item-desc">Hühnersuppe nach armenischer Art mit frischen Kräutern</div>
+                    </div>
+                    <div class="menu-item-price">6,90 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Supgapur</div>
+                        <div class="menu-item-desc">Ukrainische Soljanka</div>
+                    </div>
+                    <div class="menu-item-price">7,80 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Borsch</div>
+                        <div class="menu-item-desc">Russische Kohlsuppe</div>
+                    </div>
+                    <div class="menu-item-price">7,80 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Kololak</div>
+                        <div class="menu-item-desc">Hackfleischklößchensuppe mit frischen Kräutern</div>
+                    </div>
+                    <div class="menu-item-price">7,10 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Lobio</div>
+                        <div class="menu-item-desc">Kidneybohnensuppe mit armenischen Gewürzen</div>
+                    </div>
+                    <div class="menu-item-price">7,50 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Supmantapur</div>
+                        <div class="menu-item-desc">Pelmeinisuppe</div>
+                    </div>
+                    <div class="menu-item-price">7,80 €</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SALATE -->
+        <div class="menu-panel" id="panel-salate">
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Salat Armenia</div>
+                        <div class="menu-item-desc">Winigret, Karamb, Olivje, Aragaz</div>
+                    </div>
+                    <div class="menu-item-price">11,95 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Salat Winigret</div>
+                        <div class="menu-item-desc">Kartoffeln, Rote Bete, Sauerkraut, rote Bohnen</div>
+                    </div>
+                    <div class="menu-item-price">7,45 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Salat Olivje</div>
+                        <div class="menu-item-desc">Delikater Kartoffelsalat nach Art des Hauses</div>
+                    </div>
+                    <div class="menu-item-price">7,90 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Salat Amarajin</div>
+                        <div class="menu-item-desc">Frisches Grün mit Feta und armenischen Gewürzen</div>
+                    </div>
+                    <div class="menu-item-price">11,25 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Salat Aragaz</div>
+                        <div class="menu-item-desc">Karottensalat mit Knoblauch auf Toast</div>
+                    </div>
+                    <div class="menu-item-price">7,50 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Salat Tsug (Seljodka)</div>
+                        <div class="menu-item-desc">Heringsalat nach armenischer Art</div>
+                    </div>
+                    <div class="menu-item-price">6,50 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Salat Europa</div>
+                        <div class="menu-item-desc">Gemischter Salat mit Thunfisch</div>
+                    </div>
+                    <div class="menu-item-price">10,95 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Salat Tomate Mozzarella</div>
+                        <div class="menu-item-desc">Verfeinert mit Balsamicoessig</div>
+                    </div>
+                    <div class="menu-item-price">6,90 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Salat Fantasia</div>
+                        <div class="menu-item-desc">Tomaten und Karottensalat mit Knoblauch</div>
+                    </div>
+                    <div class="menu-item-price">6,10 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Bunter Salat</div>
+                        <div class="menu-item-desc">Gemischte Grüns mit Körnern / mit Putenstreifen</div>
+                    </div>
+                    <div class="menu-item-price">8,60 – 8,90 €</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ARMENISCHE SPEZIALITÄTEN -->
+        <div class="menu-panel" id="panel-spezialitaeten">
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Dolma</div>
+                        <div class="menu-item-desc">Weinblätter gefüllt mit Hackfleisch, Reis und armenischen Gewürzen</div>
+                    </div>
+                    <div class="menu-item-price">14,90 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Blintschiki</div>
+                        <div class="menu-item-desc">Feines Omelett mit Hackfleisch gefüllt, gebutterter Reis</div>
+                    </div>
+                    <div class="menu-item-price">13,90 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Hajkakan</div>
+                        <div class="menu-item-desc">Gewürfeltes Fleisch mit Tomaten, Paprika, Champignons, Pasta</div>
+                    </div>
+                    <div class="menu-item-price">13,90 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Hawik</div>
+                        <div class="menu-item-desc">Gedünstete Hähnchenkeule mit Paprika und Zwiebel</div>
+                    </div>
+                    <div class="menu-item-price">13,50 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Montapur (Pelmeni)</div>
+                        <div class="menu-item-desc">Handgefertigte Teigtaschen mit Hackfleisch und Sahnesoße</div>
+                    </div>
+                    <div class="menu-item-price">14,10 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Pelmeni (kleine Portion)</div>
+                        <div class="menu-item-desc">Handgefertigte Teigtaschen</div>
+                    </div>
+                    <div class="menu-item-price">8,50 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Lula</div>
+                        <div class="menu-item-desc">Hackfleischrollen mit Soße, Kartoffeln, Salat</div>
+                    </div>
+                    <div class="menu-item-price">13,90 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Araratjan</div>
+                        <div class="menu-item-desc">Schweinesteaks mit Aubergine, Kartoffeln, Karottensalat</div>
+                    </div>
+                    <div class="menu-item-price">15,90 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Kufta</div>
+                        <div class="menu-item-desc">Armenische Klopse mit gebackenen Kartoffeln</div>
+                    </div>
+                    <div class="menu-item-price">13,50 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Chalachatsch</div>
+                        <div class="menu-item-desc">Schweinekotelett mit grünen Bohnen</div>
+                    </div>
+                    <div class="menu-item-price">13,95 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Ziplonok Tabaka</div>
+                        <div class="menu-item-desc">Ganzes gebratenes Hähnchen nach armenischer Art</div>
+                    </div>
+                    <div class="menu-item-price">15,70 €</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FISCH -->
+        <div class="menu-panel" id="panel-fisch">
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Ischchan</div>
+                        <div class="menu-item-desc">Gebratene oder gedünstete Forelle mit Kartoffeln und Salatbeilage</div>
+                    </div>
+                    <div class="menu-item-price">15,80 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Seelachsfilet</div>
+                        <div class="menu-item-desc">Gebratenes Seelachsfilet mit Pommes oder Kartoffeln</div>
+                    </div>
+                    <div class="menu-item-price">12,50 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Calamares</div>
+                        <div class="menu-item-desc">Tintenfischringe mit Pommes oder Kartoffeln</div>
+                    </div>
+                    <div class="menu-item-price">13,60 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Calamaresblume</div>
+                        <div class="menu-item-desc">Oktopus mit Salat und Kartoffeln</div>
+                    </div>
+                    <div class="menu-item-price">14,50 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Kaviarteller</div>
+                        <div class="menu-item-desc">Kaviar mit Brot und Butter</div>
+                    </div>
+                    <div class="menu-item-price">8,20 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Lachsfilet</div>
+                        <div class="menu-item-desc">Lachsfilet mit Salzkartoffeln</div>
+                    </div>
+                    <div class="menu-item-price">15,90 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Dorade (Goldbrasse)</div>
+                        <div class="menu-item-desc">Goldbrasse mit Salat</div>
+                    </div>
+                    <div class="menu-item-price">17,80 €</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VEGETARISCH -->
+        <div class="menu-panel" id="panel-vegetarisch">
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Tatarburaki</div>
+                        <div class="menu-item-desc">Bandnudeln mit gebratenen Zwiebeln und Knoblauchsoße</div>
+                    </div>
+                    <div class="menu-item-price">12,40 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Wareniki</div>
+                        <div class="menu-item-desc">Gekochte Teigtaschen mit Kartoffelbrei gefüllt und Sahnesoße</div>
+                    </div>
+                    <div class="menu-item-price">12,90 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Badrijan</div>
+                        <div class="menu-item-desc">Gebratene Aubergine in Tomatensoße mit Knoblauch</div>
+                    </div>
+                    <div class="menu-item-price">9,90 €</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GERICHTE -->
+        <div class="menu-panel" id="panel-gerichte">
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Beefsteaks</div>
+                        <div class="menu-item-desc">Mit Nudeln und Salat</div>
+                    </div>
+                    <div class="menu-item-price">12,90 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Putenschnitzel</div>
+                        <div class="menu-item-desc">Putenschnitzel mit Pommes und Salat</div>
+                    </div>
+                    <div class="menu-item-price">13,80 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Schweineschnitzel</div>
+                        <div class="menu-item-desc">Schweineschnitzel mit Pommes und Salat</div>
+                    </div>
+                    <div class="menu-item-price">13,80 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Wiener Würstchen</div>
+                        <div class="menu-item-desc">Mit Pommes</div>
+                    </div>
+                    <div class="menu-item-price">7,50 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Chosik</div>
+                        <div class="menu-item-desc">Gebratene Würstchen mit Pommes</div>
+                    </div>
+                    <div class="menu-item-price">7,70 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Ragout fin</div>
+                        <div class="menu-item-desc">Ragout auf Geflügelbasis</div>
+                    </div>
+                    <div class="menu-item-price">9,15 €</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <div class="menu-item-name">Kartoffelpuffer</div>
+                        <div class="menu-item-desc">Mit Apfelmus</div>
+                    </div>
+                    <div class="menu-item-price">6,70 €</div>
+                </div>
+            </div>
+        </div>
+
+        <p class="menu-note fade-up">Alle Preise inkl. MwSt. · Informationen zu Zusatzstoffen und Allergenen auf Anfrage.</p>
+    </div>
+</section>
+
+<!-- ===== ARMENIEN ===== -->
+<section id="armenien" class="section">
+    <div class="armenien-bg"></div>
+    <div class="armenien-overlay"></div>
+    <div class="section-inner armenien-content">
+        <div class="armenien-grid">
+            <div class="armenien-text fade-up">
+                <span class="section-label">Das Land</span>
+                <h2>Armenien – Wiege einer jahrtausendealten Kultur</h2>
+                <div class="section-divider"></div>
+                <p>
+                    Armenien gilt als eines der ältesten Länder der Welt und als erste Nation, die das Christentum
+                    als Staatsreligion annahm (301 n. Chr.). Das kleine Land im Südkaukasus, eingerahmt von den
+                    mächtigen Bergen des Kaukasus, besitzt eine reiche Geschichte und eine Kultur von außergewöhnlicher Tiefe.
+                </p>
+                <p>
+                    Die armenische Küche ist ein Spiegelbild dieser Geschichte: geprägt von frischen Kräutern,
+                    charakteristischen Gewürzen, zartem Lammfleisch, Weinblättern und den Aromen des Mittelmeers
+                    und des Kaukasus zugleich. Viele Gerichte sind seit Jahrhunderten unverändert – ein Stück
+                    lebendige Geschichte auf jedem Teller.
+                </p>
+                <p>
+                    Der Ararat – obwohl heute auf türkischem Staatsgebiet – ist das Symbol Armeniens schlechthin
+                    und ziert das armenische Wappen. In unserem Restaurant finden Sie ihn als Wandgemälde: ein
+                    stiller Gruß an ein Land, das nie vergessen wird.
+                </p>
+                <a href="#kontakt" class="btn btn-gold" style="margin-top:1rem;">Tisch reservieren</a>
+            </div>
+            <div class="armenien-cards fade-up delay-1">
+                <div class="armenien-card">
+                    <h4>Tradition &amp; Geschichte</h4>
+                    <p>Armenien ist eines der ältesten christlichen Länder der Welt. Die Kochkunst reicht über 3.000 Jahre zurück – jedes Gericht trägt diese Geschichte in sich.</p>
+                </div>
+                <div class="armenien-card">
+                    <h4>Aromen des Kaukasus</h4>
+                    <p>Frische Kräuter, Granatapfel, Walnüsse, zarte Lammspieße und würzige Teigtaschen – die armenische Küche verbindet Einfachheit mit unvergleichlichem Geschmack.</p>
+                </div>
+                <div class="armenien-card">
+                    <h4>Herzliche Gastfreundschaft</h4>
+                    <p>"Bari galoust" – willkommen! Armenische Gastfreundschaft bedeutet: Jeder Gast ist ein Geschenk. Dieses Gefühl möchten wir auch in Chemnitz lebendig halten.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== GALERIE ===== -->
+<section id="galerie" class="section">
+    <div class="section-inner">
+        <div class="section-header center fade-up">
+            <span class="section-label">Einblicke</span>
+            <h2>Galerie</h2>
+            <div class="section-divider center"></div>
+        </div>
+        <div class="gallery-grid fade-up">
+            <div class="gallery-item" onclick="openLightbox(0)">
+                <img src="1.jpeg" alt="Restaurant Armenia – Gastraum">
+                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(1)">
+                <img src="2.jpeg" alt="Elegant gedeckte Tische">
+                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(2)">
+                <img src="3.jpeg" alt="Gastraum Übersicht">
+                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(3)">
+                <img src="4.jpeg" alt="Abendstimmung">
+                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(4)">
+                <img src="5.jpeg" alt="Bar mit Türkis-Beleuchtung">
+                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(5)">
+                <img src="6.jpeg" alt="Atmosphärische Beleuchtung">
+                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(6)">
+                <img src="7.jpeg" alt="Bar Bereich">
+                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(7)">
+                <img src="8.jpeg" alt="Ararat Wandgemälde">
+                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(8)">
+                <img src="9.jpeg" alt="Hängende Blumen und Pflanzen">
+                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(9)">
+                <img src="10.jpeg" alt="Bögen und Pflanzen">
+                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(10)">
+                <img src="12.jpeg" alt="Klassischer Gastraum">
+                <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+    <button class="lightbox-arrow prev" onclick="lightboxPrev()">&#8249;</button>
+    <img id="lightboxImg" src="" alt="">
+    <button class="lightbox-arrow next" onclick="lightboxNext()">&#8250;</button>
+</div>
+
+<!-- ===== KONTAKT ===== -->
+<section id="kontakt" class="section">
+    <div class="section-inner">
+        <div class="section-header fade-up">
+            <span class="section-label">Kontakt &amp; Reservierung</span>
+            <h2>Besuchen Sie uns</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="kontakt-grid">
+            <!-- Info -->
+            <div class="fade-up">
+                <div class="kontakt-info-block">
+                    <h4>Öffnungszeiten</h4>
+                    <div class="hours-table">
+                        <div class="hours-row">
+                            <span class="hours-day">Montag</span>
+                            <span class="hours-time hours-closed">Geschlossen</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="hours-day">Dienstag – Freitag</span>
+                            <span class="hours-time">17:00 – 22:00 Uhr</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="hours-day">Samstag</span>
+                            <span class="hours-time">11:30 – 24:00 Uhr</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="hours-day">Sonntag</span>
+                            <span class="hours-time">11:30 – 22:00 Uhr</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="kontakt-info-block">
+                    <h4>Adresse</h4>
+                    <p>Blankenauer Str. 75<br>09113 Chemnitz</p>
+                </div>
+                <div class="kontakt-info-block">
+                    <h4>Telefon &amp; E-Mail</h4>
+                    <p>
+                        <a href="tel:+4937147903 58">+49 (0) 371 479 03 58</a><br>
+                        <a href="mailto:info@restaurant-armenia.de">info@restaurant-armenia.de</a>
+                    </p>
+                </div>
+                <div class="kontakt-info-block">
+                    <h4>Folgen Sie uns</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com" target="_blank" rel="noopener" class="social-link" title="Facebook">
+                            <svg viewBox="0 0 24 24" width="16" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Formular -->
+            <div class="fade-up delay-1">
+                <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Ihr Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-Mail *</label>
+                            <input type="email" id="email" name="email" required placeholder="ihre@email.de">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Wunschdatum</label>
+                            <input type="date" id="date" name="date">
+                        </div>
+                        <div class="form-group">
+                            <label for="persons">Personenanzahl</label>
+                            <select id="persons" name="persons">
+                                <option value="">Bitte wählen</option>
+                                <option>1 Person</option>
+                                <option>2 Personen</option>
+                                <option>3 Personen</option>
+                                <option>4 Personen</option>
+                                <option>5–8 Personen</option>
+                                <option>9+ Personen / Gruppe</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Nachricht</label>
+                        <textarea id="message" name="message" placeholder="Ihre Anfrage oder besondere Wünsche..."></textarea>
+                    </div>
+                    <div class="form-success" id="formSuccess">
+                        Vielen Dank! Ihre Anfrage wurde gesendet. Wir melden uns bald bei Ihnen.
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Anfrage senden</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ANFAHRT (Map placeholder) ===== -->
+<div id="anfahrt">
+    <div class="map-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        <span>Blankenauer Str. 75 · 09113 Chemnitz</span>
+        <a href="https://www.google.com/maps/search/Blankenauer+Str.+75+09113+Chemnitz" target="_blank" rel="noopener">In Google Maps öffnen →</a>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="nav-logo">Restaurant <span>Armenia</span></div>
+                <p>Sachsens erstes armenisches Spezialitätenrestaurant. Authentische Aromen aus dem Herzen des Kaukasus, herzliche Gastfreundschaft und eine einzigartige Atmosphäre – mitten in Chemnitz.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Navigation</h5>
+                <ul>
+                    <li><a href="#restaurant">Restaurant</a></li>
+                    <li><a href="#speisekarte">Speisekarte</a></li>
+                    <li><a href="#armenien">Armenien</a></li>
+                    <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Kontakt</h5>
+                <ul>
+                    <li><a href="tel:+4937147903 58">+49 371 479 03 58</a></li>
+                    <li><a href="mailto:info@restaurant-armenia.de">info@restaurant-armenia.de</a></li>
+                    <li><a>Blankenauer Str. 75</a></li>
+                    <li><a>09113 Chemnitz</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Restaurant Armenia · Chemnitz</span>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="#">Impressum</a>
+                <a href="#">Datenschutz</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Floating Reservation Button -->
+<a href="tel:+4937147903 58" class="fab" id="fab" style="display:none;">
+    <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+    Reservieren
+</a>
+
+<script>
+    /* ===== NAVBAR ===== */
+    const navbar = document.getElementById('navbar');
+    const fab = document.getElementById('fab');
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if (y > 80) {
+            navbar.classList.add('scrolled');
+            fab.style.display = 'flex';
+        } else {
+            navbar.classList.remove('scrolled');
+            fab.style.display = 'none';
+        }
+    });
+
+    navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('open');
+        navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            navToggle.classList.remove('open');
+            navLinks.classList.remove('open');
+        });
+    });
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    /* ===== MENU TABS ===== */
+    document.getElementById('menuTabs').addEventListener('click', (e) => {
+        const btn = e.target.closest('.menu-tab');
+        if (!btn) return;
+        document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    });
+
+    /* ===== LIGHTBOX ===== */
+    const images = ['1.jpeg','2.jpeg','3.jpeg','4.jpeg','5.jpeg','6.jpeg','7.jpeg','8.jpeg','9.jpeg','10.jpeg','12.jpeg'];
+    let currentImg = 0;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+
+    function openLightbox(idx) {
+        currentImg = idx;
+        lightboxImg.src = images[idx];
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    function lightboxPrev() {
+        currentImg = (currentImg - 1 + images.length) % images.length;
+        lightboxImg.src = images[currentImg];
+    }
+    function lightboxNext() {
+        currentImg = (currentImg + 1) % images.length;
+        lightboxImg.src = images[currentImg];
+    }
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') lightboxPrev();
+        if (e.key === 'ArrowRight') lightboxNext();
+    });
+
+    /* ===== CONTACT FORM ===== */
+    function handleSubmit(e) {
+        e.preventDefault();
+        document.getElementById('formSuccess').style.display = 'block';
+        e.target.reset();
+        setTimeout(() => { document.getElementById('formSuccess').style.display = 'none'; }, 5000);
+    }
+
+    /* ===== HERO PARALLAX (subtle) ===== */
+    const heroBg = document.getElementById('heroBg');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY < window.innerHeight) {
+            heroBg.style.transform = `scale(1.06) translateY(${window.scrollY * 0.15}px)`;
+        }
+    }, { passive: true });
+</script>
+</body>
+</html>
