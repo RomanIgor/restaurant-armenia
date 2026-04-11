@@ -103,14 +103,16 @@
         #navbar:not(.scrolled) { background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%); }
 
         .nav-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--white);
             flex: 0 0 auto;
-            line-height: 1;
+            display: flex;
+            align-items: center;
         }
-        .nav-logo span { color: var(--gold); }
+        .nav-logo img {
+            height: 46px;
+            width: auto;
+            /* logo e creat pentru fundal inchis — il lasam neschimbat */
+            display: block;
+        }
 
         .nav-links {
             display: flex; align-items: center; gap: 2rem;
@@ -672,7 +674,8 @@
 
 <!-- ===== NAVIGATION ===== -->
 <nav id="navbar">
-    <a href="#home" class="nav-logo">Restaurant <span>Armenia</span></a>
+    <a href="#home" class="nav-logo">
+        <img src="logo.png" alt="Restaurant Armenia"></a>
     <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
         <span></span><span></span><span></span>
     </button>
@@ -1444,7 +1447,7 @@
     <div class="footer-inner">
         <div class="footer-grid">
             <div class="footer-brand">
-                <div class="nav-logo">Restaurant <span>Armenia</span></div>
+                <div class="nav-logo"><img src="logo.png" alt="Restaurant Armenia"></div>
                 <p>Sachsens erstes armenisches Spezialitätenrestaurant. Authentische Aromen aus dem Herzen des Kaukasus, herzliche Gastfreundschaft und eine einzigartige Atmosphäre – mitten in Chemnitz.</p>
             </div>
             <div class="footer-col">
