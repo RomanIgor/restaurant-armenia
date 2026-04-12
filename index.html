@@ -98,6 +98,7 @@
         #navbar.scrolled {
             background: rgba(28, 26, 24, 0.97);
             box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+            -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
         }
         #navbar:not(.scrolled) { background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%); }
@@ -176,7 +177,7 @@
         /* nav backdrop */
         .nav-backdrop {
             display: none;
-            position: fixed; inset: 0;
+            position: fixed; top: 0; right: 0; bottom: 0; left: 0;
             background: rgba(0,0,0,0.55);
             z-index: 998;
             backdrop-filter: blur(2px);
@@ -193,14 +194,14 @@
             overflow: hidden;
         }
         .hero-bg {
-            position: absolute; inset: 0;
+            position: absolute; top: 0; right: 0; bottom: 0; left: 0;
             background: url('1.jpeg') center center / cover no-repeat;
             transform: scale(1.06);
             transition: transform 8s ease;
         }
         #home:hover .hero-bg { transform: scale(1.0); }
         .hero-overlay {
-            position: absolute; inset: 0;
+            position: absolute; top: 0; right: 0; bottom: 0; left: 0;
             background: linear-gradient(
                 to bottom,
                 rgba(10,6,4,0.45) 0%,
@@ -422,11 +423,11 @@
             overflow: hidden;
         }
         .armenien-bg {
-            position: absolute; inset: 0;
+            position: absolute; top: 0; right: 0; bottom: 0; left: 0;
             background: url('food_images/1.jpeg') center center / cover no-repeat;
         }
         .armenien-overlay {
-            position: absolute; inset: 0;
+            position: absolute; top: 0; right: 0; bottom: 0; left: 0;
             background: linear-gradient(135deg, rgba(90,15,26,0.92) 0%, rgba(28,26,24,0.88) 100%);
         }
         .armenien-content { position: relative; z-index: 2; }
@@ -481,7 +482,7 @@
         }
         .gallery-item:hover img { transform: scale(1.07); }
         .gallery-overlay {
-            position: absolute; inset: 0;
+            position: absolute; top: 0; right: 0; bottom: 0; left: 0;
             background: rgba(139,26,43,0.0);
             transition: background 0.3s;
             display: flex; align-items: center; justify-content: center;
@@ -492,7 +493,7 @@
 
         /* lightbox */
         .lightbox {
-            display: none; position: fixed; inset: 0; z-index: 9000;
+            display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 9000;
             background: rgba(0,0,0,0.92);
             align-items: center; justify-content: center;
         }
@@ -784,7 +785,7 @@
         }
         #anlaesse::before {
             content: '';
-            position: absolute; inset: 0;
+            position: absolute; top: 0; right: 0; bottom: 0; left: 0;
             background: url('food_images/2.jpeg') center center / cover no-repeat;
             opacity: 0.12;
         }
@@ -933,7 +934,7 @@
             .nav-toggle { display: flex; margin-left: auto; }
 
             /* — Hero — */
-            #home { min-height: 100svh; }
+            #home { min-height: 100vh; min-height: 100svh; }
             .hero-content { padding: 0 1.2rem; }
             .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.3em; }
             .hero-title { font-size: clamp(2.6rem, 12vw, 4rem); line-height: 1.0; }
