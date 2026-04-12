@@ -193,6 +193,7 @@
             display: flex; align-items: center; justify-content: center;
             text-align: center;
             overflow: hidden;
+            background: var(--dark); /* fallback dacă imaginea nu se încarcă */
         }
         .hero-bg {
             position: absolute; top: 0; right: 0; bottom: 0; left: 0;
@@ -729,18 +730,20 @@
         .social-link:hover { border-color: var(--gold); color: var(--gold); }
 
         /* ========== ANIMATIONS ========== */
-        .fade-up {
+        /* Default: visible — JS adds .will-animate to enable fade-in effect */
+        .fade-up { opacity: 1; transform: none; }
+        .fade-up.will-animate {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.7s ease, transform 0.7s ease;
         }
-        .fade-up.visible {
+        .fade-up.will-animate.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        .fade-up.delay-1 { transition-delay: 0.15s; }
-        .fade-up.delay-2 { transition-delay: 0.3s; }
-        .fade-up.delay-3 { transition-delay: 0.45s; }
+        .fade-up.will-animate.delay-1 { transition-delay: 0.15s; }
+        .fade-up.will-animate.delay-2 { transition-delay: 0.3s; }
+        .fade-up.will-animate.delay-3 { transition-delay: 0.45s; }
 
         /* ========== RESERVATION FLOATING ========== */
         .fab {
@@ -2130,10 +2133,25 @@
     });
 
     /* ===== SCROLL ANIMATIONS ===== */
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    try {
+        const fadeEls = document.querySelectorAll('.fade-up');
+        fadeEls.forEach(el => el.classList.add('will-animate'));
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+            });
+        }, { threshold: 0.08 });
+        fadeEls.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+                el.classList.add('visible'); // deja în viewport la încărcare
+            } else {
+                observer.observe(el);
+            }
+        });
+    } catch(e) {
+        document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
+    }
 
     /* ===== MENU TABS ===== */
     document.getElementById('menuTabs').addEventListener('click', (e) => {
