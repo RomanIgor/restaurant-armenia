@@ -115,8 +115,11 @@
         }
 
         .nav-links {
+            position: fixed;
+            top: 0; right: 5%;
+            height: var(--nav-h);
             display: flex; align-items: center; gap: 2rem;
-            margin-left: auto;
+            z-index: 999;
         }
         .nav-links a {
             font-family: 'Raleway', sans-serif;
@@ -1110,18 +1113,18 @@
     <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
         <span></span><span></span><span></span>
     </button>
-    <ul class="nav-links" id="navLinks">
-        <li><a href="#restaurant">Restaurant</a></li>
-        <li><a href="#speisekarte">Speisekarte</a></li>
-        <li><a href="#armenien">Armenien</a></li>
-        <li><a href="#galerie">Galerie</a></li>
-        <li><a href="#anlaesse">Anlässe</a></li>
-        <li><a href="#rezensionen">Rezensionen</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
-        <li><a href="#rezervare" class="btn btn-primary">Reservieren</a></li>
-    </ul>
 </nav>
-<div class="nav-backdrop" id="navBackdrop"></div>
+<!-- nav-links is OUTSIDE nav to avoid backdrop-filter containing-block bug -->
+<ul class="nav-links" id="navLinks">
+    <li><a href="#restaurant">Restaurant</a></li>
+    <li><a href="#speisekarte">Speisekarte</a></li>
+    <li><a href="#armenien">Armenien</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#anlaesse">Anlässe</a></li>
+    <li><a href="#rezensionen">Rezensionen</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#rezervare" class="btn btn-primary">Reservieren</a></li>
+</ul>
 
 <!-- ===== HERO ===== -->
 <section id="home">
