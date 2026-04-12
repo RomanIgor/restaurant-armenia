@@ -156,7 +156,7 @@
         }
         .hero-bg {
             position: absolute; inset: 0;
-            background: url('9.jpeg') center center / cover no-repeat;
+            background: url('1.jpeg') center center / cover no-repeat;
             transform: scale(1.06);
             transition: transform 8s ease;
         }
@@ -261,6 +261,7 @@
         .about-img-wrap img {
             width: 100%; height: 520px;
             object-fit: cover;
+            object-position: center top;
         }
         .about-img-accent {
             position: absolute;
@@ -384,7 +385,7 @@
         }
         .armenien-bg {
             position: absolute; inset: 0;
-            background: url('8.jpeg') center center / cover no-repeat;
+            background: url('food_images/1.jpeg') center center / cover no-repeat;
         }
         .armenien-overlay {
             position: absolute; inset: 0;
@@ -753,6 +754,205 @@
             .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(6, 220px); }
             .gallery-item:nth-child(1) { grid-column: auto; grid-row: auto; }
         }
+
+        /* ========== SPECIAL OCCASIONS ========== */
+        #anlaesse {
+            background: var(--dark);
+            position: relative;
+            overflow: hidden;
+        }
+        #anlaesse::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: url('food_images/2.jpeg') center center / cover no-repeat;
+            opacity: 0.12;
+        }
+        #anlaesse .section-label { color: var(--gold); }
+        #anlaesse h2 { color: var(--white); }
+        #anlaesse .section-divider { background: var(--gold); }
+
+        .anlaesse-intro {
+            color: rgba(255,255,255,0.7);
+            max-width: 640px;
+            margin-bottom: 3rem;
+        }
+        .anlaesse-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            position: relative;
+        }
+        .anlass-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(197,160,40,0.2);
+            padding: 2rem 1.8rem;
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .anlass-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 3px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s ease;
+        }
+        .anlass-card:hover { border-color: var(--gold); background: rgba(255,255,255,0.08); transform: translateY(-4px); }
+        .anlass-card:hover::after { transform: scaleX(1); }
+        .anlass-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+        .anlass-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem; color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+        .anlass-card p { color: rgba(255,255,255,0.62); font-size: 0.88rem; line-height: 1.75; margin: 0; }
+
+        .anlaesse-photos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        .anlaesse-photo { overflow: hidden; height: 300px; position: relative; }
+        .anlaesse-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .anlaesse-photo:hover img { transform: scale(1.04); }
+        .anlaesse-photo-caption {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 1.2rem 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .anlaesse-cta {
+            margin-top: 3rem;
+            text-align: center;
+        }
+        .anlaesse-cta p {
+            color: rgba(255,255,255,0.55);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ========== VIDEO SECTION ========== */
+        #video-section {
+            background: var(--dark);
+            padding: 0;
+            position: relative;
+        }
+        .video-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 5%;
+            text-align: center;
+        }
+        .video-wrapper video {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ========== DEPOSIT WARNING ========== */
+        .deposit-warning {
+            display: none;
+            padding: 12px 16px;
+            background: rgba(197,160,40,0.12);
+            border-left: 3px solid var(--gold);
+            font-size: 0.85rem;
+            color: rgba(197,160,40,0.9);
+            line-height: 1.6;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ========== ENHANCED MOBILE CSS ========== */
+        @media (max-width: 768px) {
+            :root { --nav-h: 60px; --section-pad: 60px; }
+
+            /* Hero */
+            .hero-title { font-size: clamp(2.4rem, 11vw, 3.5rem); }
+            .hero-subtitle { font-size: 0.95rem; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .hero-buttons .btn { width: 220px; text-align: center; }
+
+            /* Info strip */
+            .info-strip { flex-direction: column; }
+            .info-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); max-width: 100%; padding: 18px 24px; }
+            .info-text { font-size: 0.85rem; }
+
+            /* About */
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .about-img-wrap img { height: 280px; }
+            .about-highlights { gap: 1rem; }
+            .highlight-num { font-size: 1.8rem; }
+
+            /* Menu tabs */
+            .menu-tabs { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 8px; -webkit-overflow-scrolling: touch; }
+            .menu-tabs::-webkit-scrollbar { height: 3px; }
+            .menu-tabs::-webkit-scrollbar-thumb { background: var(--gold); }
+            .menu-tab { flex-shrink: 0; font-size: 0.7rem; padding: 8px 16px; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .menu-item { padding: 16px 0; }
+            .menu-item-name { font-size: 0.95rem; }
+            .menu-item-price { font-size: 0.95rem; }
+            .menu-item-desc { font-size: 0.75rem; }
+
+            /* Armenien */
+            .armenien-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+            /* Gallery */
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 200px); }
+            .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
+
+            /* Special occasions */
+            .anlaesse-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .anlaesse-photos { grid-template-columns: 1fr; }
+            .anlaesse-photo { height: 220px; }
+
+            /* Reviews */
+            .reviews-grid { grid-template-columns: 1fr; }
+            .reviews-meta { gap: 1.5rem; }
+
+            /* Kontakt */
+            .kontakt-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .form-row { grid-template-columns: 1fr; }
+
+            /* Form inputs — bigger touch targets */
+            .form-group input, .form-group textarea, .form-group select {
+                padding: 14px 16px;
+                font-size: 1rem;
+            }
+
+            /* Footer */
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-brand { grid-column: auto; }
+
+            /* FAB */
+            .fab { bottom: 1.25rem; right: 1.25rem; padding: 12px 18px; font-size: 0.68rem; }
+
+            /* Section headers */
+            h2 { font-size: clamp(1.6rem, 7vw, 2.5rem); }
+            .section-header { margin-bottom: 2rem; }
+
+            /* Lightbox arrows closer on mobile */
+            .lightbox-arrow.prev { left: 0.5rem; }
+            .lightbox-arrow.next { right: 0.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            :root { --section-pad: 48px; }
+            .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(6, 200px); }
+            .gallery-item:nth-child(1) { grid-column: auto; grid-row: auto; }
+            .hero-title { font-size: clamp(2.2rem, 12vw, 3rem); }
+            .about-img-wrap img { height: 240px; }
+            .review-card { padding: 1.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -769,9 +969,10 @@
         <li><a href="#speisekarte">Speisekarte</a></li>
         <li><a href="#armenien">Armenien</a></li>
         <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#anlaesse">Anlässe</a></li>
         <li><a href="#rezensionen">Rezensionen</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
-        <li><a href="tel:+4937147903 58" class="btn btn-primary">Reservieren</a></li>
+        <li><a href="#kontakt" class="btn btn-primary">Reservieren</a></li>
     </ul>
 </nav>
 
@@ -785,7 +986,7 @@
         <p class="hero-subtitle">Authentische Aromen aus dem Herzen des Kaukasus</p>
         <div class="hero-buttons">
             <a href="#speisekarte" class="btn btn-primary">Zur Speisekarte</a>
-            <a href="tel:+4937147903 58" class="btn btn-outline">Tisch reservieren</a>
+            <a href="#kontakt" class="btn btn-outline">Tisch reservieren</a>
         </div>
     </div>
     <div class="hero-scroll">
@@ -806,8 +1007,8 @@
     <div class="info-item fade-up delay-1">
         <div class="info-icon">⏰</div>
         <div class="info-text">
-            <strong>Di – Fr: 17:00 – 22:00</strong>
-            Sa: 11:30 – 24:00 · So: 11:30 – 22:00
+            <strong>Fr: 17:00–22:00 · Sa &amp; So: 11:30–22:00</strong>
+            Mo – Do: Geschlossen
         </div>
     </div>
     <div class="info-item fade-up delay-2">
@@ -818,10 +1019,10 @@
         </div>
     </div>
     <div class="info-item fade-up delay-3">
-        <div class="info-icon">🍷</div>
+        <div class="info-icon">🍽️</div>
         <div class="info-text">
             <strong>Tischreservierung</strong>
-            Auf Anfrage & telefonisch
+            Jetzt online reservieren
         </div>
     </div>
 </div>
@@ -831,7 +1032,7 @@
     <div class="section-inner">
         <div class="about-grid">
             <div class="about-img-wrap fade-up">
-                <img src="2.jpeg" alt="Eleganter Gastraum im Restaurant Armenia">
+                <img src="food_images/20.jpeg" alt="Armenische Spezialitäten im Restaurant Armenia">
                 <div class="about-img-accent"></div>
             </div>
             <div class="about-text fade-up delay-1">
@@ -1300,9 +1501,10 @@
             </div>
             <div style="margin-top:2rem; padding:1.2rem 1.5rem; border:1px solid rgba(197,160,40,0.25); max-width:600px;">
                 <p style="color:rgba(255,255,255,0.6); font-size:0.82rem; line-height:1.7; margin:0;">
-                    Für Reservierungen und Fragen zur Getränkekarte erreichen Sie uns unter
+                    Für Fragen zur Getränkekarte erreichen Sie uns unter
                     <a href="tel:+4937147903 58" style="color:var(--gold);">+49 371 479 03 58</a> oder
-                    <a href="mailto:info@restaurant-armenia.de" style="color:var(--gold);">info@restaurant-armenia.de</a>
+                    <a href="mailto:info@restaurant-armenia.de" style="color:var(--gold);">info@restaurant-armenia.de</a>.
+                    Tischreservierungen bitte über das <a href="#kontakt" style="color:var(--gold);">Reservierungsformular</a>.
                 </p>
             </div>
         </div>
@@ -1366,34 +1568,34 @@
             <div class="section-divider center"></div>
         </div>
         <div class="gallery-grid fade-up">
-            <!-- 1: mare (2col x 2row) — sala cu arcade, cea mai eleganta -->
+            <!-- 1: gross (2col x 2row) — Lula Kebab mit Restaurant Armenia im Hintergrund -->
             <div class="gallery-item" onclick="openLightbox(0)">
-                <img src="2.jpeg" alt="Eleganter Gastraum mit Bögen">
+                <img src="food_images/20.jpeg" alt="Lula Kebab – Spezialität des Hauses">
                 <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
             </div>
-            <!-- 2: col 3 row 1 — bar cu LED turcoaz -->
+            <!-- 2: col 3 row 1 — Bar mit Türkis-LED -->
             <div class="gallery-item" onclick="openLightbox(1)">
                 <img src="5.jpeg" alt="Bar mit Türkis-Beleuchtung">
                 <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
             </div>
-            <!-- 3: col 3 row 2 — murala Ararat -->
+            <!-- 3: col 3 row 2 — Bögen mit Pflanzen -->
             <div class="gallery-item" onclick="openLightbox(2)">
-                <img src="8.jpeg" alt="Ararat-Wandgemälde">
+                <img src="10.jpeg" alt="Gastraum mit Bögen und Pflanzen">
                 <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
             </div>
-            <!-- 4: col 1 row 3 — vedere de ansamblu -->
+            <!-- 4: col 1 row 3 — Dolma -->
             <div class="gallery-item" onclick="openLightbox(3)">
-                <img src="1.jpeg" alt="Restaurant Armenia – Gesamtansicht">
+                <img src="food_images/13.jpeg" alt="Dolma – Weinblätter mit Hackfleisch">
                 <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
             </div>
-            <!-- 5: col 2 row 3 — atmosfera de seara -->
+            <!-- 5: col 2 row 3 — Gastraum Gesamtansicht -->
             <div class="gallery-item" onclick="openLightbox(4)">
-                <img src="6.jpeg" alt="Abendatmosphäre">
+                <img src="1.jpeg" alt="Restaurant Armenia – Gastraum">
                 <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
             </div>
-            <!-- 6: col 3 row 3 — arcade cu plante -->
+            <!-- 6: col 3 row 3 — Kebab vom Grill -->
             <div class="gallery-item" onclick="openLightbox(5)">
-                <img src="10.jpeg" alt="Bögen und Grünpflanzen">
+                <img src="food_images/12.jpeg" alt="Lula Kebab vom Grill">
                 <div class="gallery-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
             </div>
         </div>
@@ -1407,6 +1609,65 @@
     <img id="lightboxImg" src="" alt="">
     <button class="lightbox-arrow next" onclick="lightboxNext()">&#8250;</button>
 </div>
+
+<!-- ===== BESONDERE ANLÄSSE ===== -->
+<section id="anlaesse" class="section">
+    <div class="section-inner" style="position:relative; z-index:1;">
+        <div class="section-header fade-up">
+            <span class="section-label">Feiern &amp; Feste</span>
+            <h2>Besondere Anlässe</h2>
+            <div class="section-divider"></div>
+            <p class="anlaesse-intro">
+                Ob Geburtstag, Familienfeier oder Firmenveranstaltung – Restaurant Armenia ist der perfekte Rahmen
+                für Ihre besonderen Momente. Wir gestalten Ihr Fest mit armenischer Herzlichkeit,
+                ausgewählten Speisen und einem unvergesslichen Ambiente.
+            </p>
+        </div>
+
+        <div class="anlaesse-grid">
+            <div class="anlass-card fade-up">
+                <div class="anlass-icon">🎂</div>
+                <h4>Geburtstage</h4>
+                <p>Feiern Sie Ihren besonderen Tag mit Familie und Freunden. Wir bereiten ein festliches Buffet oder Menü nach Ihren Wünschen vor und sorgen für eine unvergessliche Atmosphäre.</p>
+            </div>
+            <div class="anlass-card fade-up delay-1">
+                <div class="anlass-icon">🏢</div>
+                <h4>Firmenveranstaltungen</h4>
+                <p>Team-Events, Geschäftsessen oder Betriebsfeiern – wir bieten den idealen Rahmen für professionelle Zusammenkünfte mit authentischer armenischer Küche.</p>
+            </div>
+            <div class="anlass-card fade-up delay-2">
+                <div class="anlass-icon">👨‍👩‍👧‍👦</div>
+                <h4>Familienfeiern</h4>
+                <p>Große Familienfeste, Jubiläen oder Taufen – unser Restaurant bietet Platz für Ihre ganze Familie. Genießen Sie gemeinsam die Aromen des Kaukasus.</p>
+            </div>
+        </div>
+
+        <div class="anlaesse-photos fade-up">
+            <div class="anlaesse-photo">
+                <img src="food_images/1.jpeg" alt="Festliches Buffet im Restaurant Armenia">
+                <div class="anlaesse-photo-caption">Armenisches Festbuffet</div>
+            </div>
+            <div class="anlaesse-photo">
+                <img src="food_images/2.jpeg" alt="Feier mit Buffet und Dekoration">
+                <div class="anlaesse-photo-caption">Festliche Dekoration</div>
+            </div>
+        </div>
+
+        <div class="anlaesse-cta fade-up">
+            <p>Für Gruppenreservierungen ab 10 Personen bitten wir um eine Anzahlung von 10 € pro Person.</p>
+            <a href="#kontakt" class="btn btn-gold">Veranstaltung anfragen</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== VIDEO ===== -->
+<section id="video-section">
+    <div class="video-wrapper">
+        <video controls playsinline muted poster="food_images/18.jpeg">
+            <source src="food_images/video.mp4" type="video/mp4">
+        </video>
+    </div>
+</section>
 
 <!-- ===== REZENSIONEN ===== -->
 <section id="rezensionen" class="section">
@@ -1526,16 +1787,16 @@
                     <h4>Öffnungszeiten</h4>
                     <div class="hours-table">
                         <div class="hours-row">
-                            <span class="hours-day">Montag</span>
+                            <span class="hours-day">Montag – Donnerstag</span>
                             <span class="hours-time hours-closed">Geschlossen</span>
                         </div>
                         <div class="hours-row">
-                            <span class="hours-day">Dienstag – Freitag</span>
+                            <span class="hours-day">Freitag</span>
                             <span class="hours-time">17:00 – 22:00 Uhr</span>
                         </div>
                         <div class="hours-row">
                             <span class="hours-day">Samstag</span>
-                            <span class="hours-time">11:30 – 24:00 Uhr</span>
+                            <span class="hours-time">11:30 – 22:00 Uhr</span>
                         </div>
                         <div class="hours-row">
                             <span class="hours-day">Sonntag</span>
@@ -1557,8 +1818,8 @@
                 <div class="kontakt-info-block">
                     <h4>Folgen Sie uns</h4>
                     <div class="social-links">
-                        <a href="https://www.facebook.com" target="_blank" rel="noopener" class="social-link" title="Facebook">
-                            <svg viewBox="0 0 24 24" width="16" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        <a href="https://www.instagram.com/restaurant__armenia/" target="_blank" rel="noopener" class="social-link" title="Instagram">
+                            <svg viewBox="0 0 24 24" width="16" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
                         </a>
                     </div>
                 </div>
@@ -1572,36 +1833,72 @@
                             <input type="text" id="name" name="name" required placeholder="Ihr Name">
                         </div>
                         <div class="form-group">
-                            <label for="email">E-Mail *</label>
-                            <input type="email" id="email" name="email" required placeholder="ihre@email.de">
+                            <label for="phone">Telefon *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+49 ...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-Mail</label>
+                        <input type="email" id="email" name="email" placeholder="ihre@email.de">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Datum * <small style="color:var(--stone);font-weight:400;text-transform:none;letter-spacing:0;">(Fr, Sa, So)</small></label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Uhrzeit *</label>
+                            <select id="time" name="time" required>
+                                <option value="">Bitte Datum wählen</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="date">Wunschdatum</label>
-                            <input type="date" id="date" name="date">
+                            <label for="adults">Erwachsene *</label>
+                            <select id="adults" name="adults" required>
+                                <option value="">Bitte wählen</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15+</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="persons">Personenanzahl</label>
-                            <select id="persons" name="persons">
-                                <option value="">Bitte wählen</option>
-                                <option>1 Person</option>
-                                <option>2 Personen</option>
-                                <option>3 Personen</option>
-                                <option>4 Personen</option>
-                                <option>5–8 Personen</option>
-                                <option>9+ Personen / Gruppe</option>
+                            <label for="children">Kinder</label>
+                            <select id="children" name="children">
+                                <option value="0">Keine</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5+</option>
                             </select>
                         </div>
                     </div>
+                    <div class="deposit-warning" id="depositWarning">
+                        ⚠️ Für Gruppen ab 10 Personen bitten wir um eine Anzahlung von <strong>10 € pro Person</strong>.
+                        Diese wird bei Ihrer Ankunft verrechnet. Wir melden uns nach Ihrer Anfrage.
+                    </div>
                     <div class="form-group">
-                        <label for="message">Nachricht</label>
-                        <textarea id="message" name="message" placeholder="Ihre Anfrage oder besondere Wünsche..."></textarea>
+                        <label for="message">Nachricht / Besondere Wünsche</label>
+                        <textarea id="message" name="message" placeholder="Anlass, Allergien, besondere Wünsche..."></textarea>
                     </div>
                     <div class="form-success" id="formSuccess">
-                        Vielen Dank! Ihre Anfrage wurde gesendet. Wir melden uns bald bei Ihnen.
+                        Vielen Dank! Ihre Reservierungsanfrage wurde gesendet. Wir melden uns in Kürze bei Ihnen.
                     </div>
-                    <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Anfrage senden</button>
+                    <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Reservierung anfragen</button>
                 </form>
             </div>
         </div>
@@ -1624,6 +1921,11 @@
             <div class="footer-brand">
                 <div class="nav-logo"><img src="logo.png" alt="Restaurant Armenia"></div>
                 <p>Sachsens erstes armenisches Spezialitätenrestaurant. Authentische Aromen aus dem Herzen des Kaukasus, herzliche Gastfreundschaft und eine einzigartige Atmosphäre – mitten in Chemnitz.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/restaurant__armenia/" target="_blank" rel="noopener" class="social-link" title="Instagram">
+                        <svg viewBox="0 0 24 24" width="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-linecap="round"/></svg>
+                    </a>
+                </div>
             </div>
             <div class="footer-col">
                 <h5>Navigation</h5>
@@ -1632,6 +1934,7 @@
                     <li><a href="#speisekarte">Speisekarte</a></li>
                     <li><a href="#armenien">Armenien</a></li>
                     <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#anlaesse">Anlässe</a></li>
                     <li><a href="#kontakt">Kontakt</a></li>
                 </ul>
             </div>
@@ -1656,8 +1959,8 @@
 </footer>
 
 <!-- Floating Reservation Button -->
-<a href="tel:+4937147903 58" class="fab" id="fab" style="display:none;">
-    <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+<a href="#kontakt" class="fab" id="fab" style="display:none;">
+    <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
     Reservieren
 </a>
 
@@ -1707,7 +2010,7 @@
     });
 
     /* ===== LIGHTBOX ===== */
-    const images = ['2.jpeg','5.jpeg','8.jpeg','1.jpeg','6.jpeg','10.jpeg'];
+    const images = ['food_images/20.jpeg','5.jpeg','10.jpeg','food_images/13.jpeg','1.jpeg','food_images/12.jpeg'];
     let currentImg = 0;
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
@@ -1738,12 +2041,72 @@
         if (e.key === 'ArrowRight') lightboxNext();
     });
 
+    /* ===== SMART RESERVATION FORM ===== */
+    const dateInput = document.getElementById('date');
+    const timeSelect = document.getElementById('time');
+    const adultsSelect = document.getElementById('adults');
+    const childrenSelect = document.getElementById('children');
+    const depositWarning = document.getElementById('depositWarning');
+
+    // Set min date to today
+    const today = new Date();
+    dateInput.min = today.toISOString().split('T')[0];
+
+    // Only allow Fri (5), Sat (6), Sun (0)
+    dateInput.addEventListener('change', function() {
+        const val = this.value;
+        if (!val) { timeSelect.innerHTML = '<option value="">Bitte Datum wählen</option>'; return; }
+        const d = new Date(val + 'T12:00:00');
+        const day = d.getDay(); // 0=Sun, 5=Fri, 6=Sat
+        if (day !== 5 && day !== 6 && day !== 0) {
+            this.value = '';
+            timeSelect.innerHTML = '<option value="">Bitte Datum wählen</option>';
+            alert('Wir haben nur Freitag, Samstag und Sonntag geöffnet. Bitte wählen Sie einen dieser Tage.');
+            return;
+        }
+        // Populate time slots
+        timeSelect.innerHTML = '<option value="">Uhrzeit wählen</option>';
+        let slots = [];
+        if (day === 5) {
+            // Freitag 17:00-21:30 (letzte Bestellung 21:30)
+            for (let h = 17; h <= 21; h++) {
+                slots.push(`${h}:00`);
+                if (h < 21) slots.push(`${h}:30`);
+            }
+            slots.push('21:30');
+        } else {
+            // Samstag & Sonntag 11:30-21:30
+            for (let h = 11; h <= 21; h++) {
+                if (h === 11) { slots.push('11:30'); continue; }
+                slots.push(`${h}:00`);
+                if (h < 21) slots.push(`${h}:30`);
+            }
+            slots.push('21:30');
+        }
+        slots.forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s; opt.textContent = s + ' Uhr';
+            timeSelect.appendChild(opt);
+        });
+    });
+
+    // Deposit warning for 10+ persons
+    function checkDeposit() {
+        const adults = parseInt(adultsSelect.value) || 0;
+        const children = parseInt(childrenSelect.value) || 0;
+        depositWarning.style.display = (adults + children >= 10) ? 'block' : 'none';
+    }
+    adultsSelect.addEventListener('change', checkDeposit);
+    childrenSelect.addEventListener('change', checkDeposit);
+
     /* ===== CONTACT FORM ===== */
     function handleSubmit(e) {
         e.preventDefault();
         document.getElementById('formSuccess').style.display = 'block';
         e.target.reset();
-        setTimeout(() => { document.getElementById('formSuccess').style.display = 'none'; }, 5000);
+        timeSelect.innerHTML = '<option value="">Bitte Datum wählen</option>';
+        depositWarning.style.display = 'none';
+        setTimeout(() => { document.getElementById('formSuccess').style.display = 'none'; }, 6000);
     }
 
     /* ===== HERO PARALLAX (subtle) ===== */
