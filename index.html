@@ -931,7 +931,8 @@
                 transition: opacity 0.35s ease 0.40s, transform 0.35s ease 0.40s, background 0.25s;
             }
             .nav-links.open .btn { opacity: 1; transform: none; }
-            .nav-toggle { display: flex; margin-left: auto; }
+            .nav-toggle { display: flex; margin-left: auto; z-index: 10000; }
+            .nav-toggle.open span { background: var(--white); }
 
             /* — Hero — */
             #home { min-height: 100vh; min-height: 100svh; }
