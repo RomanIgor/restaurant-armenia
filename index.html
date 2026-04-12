@@ -727,32 +727,15 @@
             .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 220px); }
             .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
             .about-img-accent { display: none; }
+            .anlaesse-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 900px) {
             :root { --section-pad: 64px; }
             .about-grid, .armenien-grid, .kontakt-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-            .about-img-wrap img { height: 380px; }
+            .about-img-wrap img { height: 360px; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .footer-brand { grid-column: 1 / -1; }
             .menu-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 768px) {
-            .nav-links { display: none; flex-direction: column; align-items: flex-start; gap: 0; position: fixed; top: 0; right: 0; bottom: 0; width: 280px; background: var(--dark); padding: calc(var(--nav-h) + 1rem) 2rem 2rem; box-shadow: -5px 0 30px rgba(0,0,0,0.5); }
-            .nav-links.open { display: flex; }
-            .nav-links a { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07); width: 100%; font-size: 0.9rem; }
-            .nav-links .btn { margin: 1rem 0 0; }
-            .nav-toggle { display: flex; margin-left: auto; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 200px); }
-            .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
-            .hero-buttons { flex-direction: column; align-items: center; }
-            .form-row { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .info-strip { flex-direction: column; }
-            .info-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); max-width: 100%; }
-        }
-        @media (max-width: 480px) {
-            .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(6, 220px); }
-            .gallery-item:nth-child(1) { grid-column: auto; grid-row: auto; }
         }
 
         /* ========== SPECIAL OCCASIONS ========== */
@@ -871,87 +854,175 @@
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* ========== ENHANCED MOBILE CSS ========== */
+        /* ========== MOBILE ========== */
         @media (max-width: 768px) {
-            :root { --nav-h: 60px; --section-pad: 60px; }
+            :root { --nav-h: 60px; --section-pad: 56px; }
 
-            /* Hero */
-            .hero-title { font-size: clamp(2.4rem, 11vw, 3.5rem); }
-            .hero-subtitle { font-size: 0.95rem; }
-            .hero-buttons { flex-direction: column; align-items: center; }
-            .hero-buttons .btn { width: 220px; text-align: center; }
+            /* — Nav — */
+            .nav-links {
+                display: none; flex-direction: column; align-items: flex-start; gap: 0;
+                position: fixed; top: 0; right: 0; bottom: 0; width: min(280px, 80vw);
+                background: var(--dark);
+                padding: calc(var(--nav-h) + 1.5rem) 2rem 2rem;
+                box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+                overflow-y: auto;
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a {
+                padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+                width: 100%; font-size: 0.95rem; letter-spacing: 0.06em;
+            }
+            .nav-links .btn { margin: 1.2rem 0 0; width: 100%; text-align: center; padding: 14px; }
+            .nav-toggle { display: flex; margin-left: auto; padding: 10px; }
 
-            /* Info strip */
+            /* — Hero — */
+            #home { min-height: 100svh; }
+            .hero-content { padding: 0 1.2rem; }
+            .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.3em; }
+            .hero-title { font-size: clamp(2.6rem, 12vw, 4rem); line-height: 1.0; }
+            .hero-subtitle { font-size: 0.9rem; margin-bottom: 2rem; }
+            .hero-buttons { flex-direction: column; align-items: center; gap: 0.75rem; }
+            .hero-buttons .btn { width: 240px; text-align: center; padding: 16px 24px; }
+
+            /* — Info strip — */
             .info-strip { flex-direction: column; }
-            .info-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); max-width: 100%; padding: 18px 24px; }
-            .info-text { font-size: 0.85rem; }
+            .info-item {
+                border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07);
+                max-width: 100%; width: 100%;
+                padding: 16px 5%;
+                gap: 12px;
+            }
+            .info-icon { font-size: 1.2rem; }
+            .info-text { font-size: 0.82rem; }
+            .info-text strong { font-size: 0.88rem; }
 
-            /* About */
+            /* — About — */
             .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .about-img-wrap img { height: 280px; }
-            .about-highlights { gap: 1rem; }
-            .highlight-num { font-size: 1.8rem; }
+            .about-img-wrap img { height: 260px; object-position: center; }
+            .about-text { padding-right: 0; }
+            .about-text p { font-size: 0.92rem; }
+            .about-highlights { gap: 1.2rem; margin: 1.5rem 0; }
+            .highlight-num { font-size: 2rem; }
+            .highlight-label { font-size: 0.68rem; }
 
-            /* Menu tabs */
-            .menu-tabs { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 8px; -webkit-overflow-scrolling: touch; }
-            .menu-tabs::-webkit-scrollbar { height: 3px; }
-            .menu-tabs::-webkit-scrollbar-thumb { background: var(--gold); }
-            .menu-tab { flex-shrink: 0; font-size: 0.7rem; padding: 8px 16px; }
+            /* — Speisekarte — */
+            .menu-tabs {
+                overflow-x: auto; flex-wrap: nowrap;
+                padding-bottom: 6px; gap: 0.4rem;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .menu-tabs::-webkit-scrollbar { display: none; }
+            .menu-tab { flex-shrink: 0; font-size: 0.68rem; padding: 8px 14px; }
             .menu-grid { grid-template-columns: 1fr; }
-            .menu-item { padding: 16px 0; }
-            .menu-item-name { font-size: 0.95rem; }
-            .menu-item-price { font-size: 0.95rem; }
-            .menu-item-desc { font-size: 0.75rem; }
+            .menu-item { padding: 15px 0; }
+            .menu-item-name { font-size: 0.92rem; }
+            .menu-item-price { font-size: 0.92rem; }
+            .menu-item-desc { font-size: 0.74rem; }
 
-            /* Armenien */
+            /* — Armenien — */
             .armenien-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .armenien-text p { font-size: 0.9rem; }
+            .armenien-cards { gap: 0.9rem; }
+            .armenien-card { padding: 1.2rem; }
 
-            /* Gallery */
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 200px); }
+            /* — Gallery — */
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: 200px 180px 180px 180px;
+            }
             .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
 
-            /* Special occasions */
+            /* — Anlässe — */
             .anlaesse-grid { grid-template-columns: 1fr; gap: 1rem; }
-            .anlaesse-photos { grid-template-columns: 1fr; }
+            .anlass-card { padding: 1.5rem; }
+            .anlaesse-photos { grid-template-columns: 1fr; margin-top: 2rem; }
             .anlaesse-photo { height: 220px; }
+            .anlaesse-cta { margin-top: 2rem; }
 
-            /* Reviews */
-            .reviews-grid { grid-template-columns: 1fr; }
-            .reviews-meta { gap: 1.5rem; }
+            /* — Reviews — */
+            .reviews-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .reviews-meta { gap: 1.2rem; flex-wrap: wrap; margin-bottom: 2rem; }
+            .reviews-score-num { font-size: 2.8rem; }
+            .review-card { padding: 1.5rem; }
+            .review-text { font-size: 0.88rem; }
 
-            /* Kontakt */
-            .kontakt-grid { grid-template-columns: 1fr; gap: 2rem; }
+            /* — Kontakt / Form — */
+            .kontakt-grid { grid-template-columns: 1fr; gap: 2.5rem; }
             .form-row { grid-template-columns: 1fr; }
-
-            /* Form inputs — bigger touch targets */
-            .form-group input, .form-group textarea, .form-group select {
-                padding: 14px 16px;
-                font-size: 1rem;
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 15px 14px;
+                font-size: 16px; /* evita zoom pe iOS */
+                min-height: 50px;
             }
+            .form-group textarea { min-height: 110px; }
+            .form-group label { font-size: 0.7rem; }
+            .contact-form { gap: 0.85rem; }
 
-            /* Footer */
+            /* — Footer — */
             .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
             .footer-brand { grid-column: auto; }
+            .footer-brand p { font-size: 0.82rem; }
+            footer { padding: 40px 5% 24px; }
+            .footer-bottom { font-size: 0.72rem; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
 
-            /* FAB */
-            .fab { bottom: 1.25rem; right: 1.25rem; padding: 12px 18px; font-size: 0.68rem; }
+            /* — FAB — */
+            .fab { bottom: 1rem; right: 1rem; padding: 13px 20px; font-size: 0.68rem; gap: 8px; }
+            .fab svg { width: 15px; }
 
-            /* Section headers */
-            h2 { font-size: clamp(1.6rem, 7vw, 2.5rem); }
+            /* — Lightbox — */
+            .lightbox-arrow { width: 40px; height: 40px; font-size: 1.2rem; }
+            .lightbox-arrow.prev { left: 0.3rem; }
+            .lightbox-arrow.next { right: 0.3rem; }
+
+            /* — Typography — */
+            h2 { font-size: clamp(1.7rem, 7vw, 2.4rem); }
+            h3 { font-size: clamp(1.2rem, 5vw, 1.6rem); }
             .section-header { margin-bottom: 2rem; }
-
-            /* Lightbox arrows closer on mobile */
-            .lightbox-arrow.prev { left: 0.5rem; }
-            .lightbox-arrow.next { right: 0.5rem; }
+            .section { padding: var(--section-pad) 5%; }
         }
 
         @media (max-width: 480px) {
-            :root { --section-pad: 48px; }
-            .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(6, 200px); }
-            .gallery-item:nth-child(1) { grid-column: auto; grid-row: auto; }
-            .hero-title { font-size: clamp(2.2rem, 12vw, 3rem); }
-            .about-img-wrap img { height: 240px; }
-            .review-card { padding: 1.5rem; }
+            :root { --section-pad: 44px; }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 180px 160px 160px 160px;
+            }
+            .gallery-item:nth-child(1) { grid-column: 1 / 3; }
+            .hero-title { font-size: clamp(2.2rem, 13vw, 3rem); }
+            .hero-buttons .btn { width: 200px; font-size: 0.72rem; }
+            .about-img-wrap img { height: 220px; }
+            .highlight-num { font-size: 1.7rem; }
+            .about-highlights { gap: 0.8rem; }
+            .info-item { padding: 14px 5%; }
+            .anlaesse-photo { height: 200px; }
+            .review-card::before { font-size: 4rem; }
+        }
+
+        /* ========== CLICKABLE REVIEW CARDS ========== */
+        a.review-card {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+        a.review-card:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            transform: translateY(-3px);
+        }
+        a.review-card { transition: box-shadow 0.3s, transform 0.3s; }
+        .review-platform-link {
+            margin-left: auto;
+            font-size: 0.68rem; font-weight: 600;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--stone);
+            display: flex; align-items: center; gap: 4px;
+        }
+        .review-platform-link::after {
+            content: '↗';
+            font-size: 0.75rem;
+            color: var(--gold);
         }
     </style>
 </head>
@@ -1686,12 +1757,12 @@
                     <div class="reviews-count">477 Bewertungen</div>
                 </div>
             </div>
-            <span class="reviews-source">Google</span>
-            <span class="reviews-source">TripAdvisor · #39 von 388 in Chemnitz</span>
+            <a href="https://www.google.com/maps/search/Restaurant+Armenia+Blankenauer+Str+75+Chemnitz" target="_blank" rel="noopener" class="reviews-source" style="cursor:pointer;">Google ↗</a>
+            <a href="https://www.tripadvisor.de/Restaurants-g187383-Chemnitz_Saxony.html" target="_blank" rel="noopener" class="reviews-source" style="cursor:pointer;">TripAdvisor · #39 von 388 in Chemnitz ↗</a>
         </div>
 
         <div class="reviews-grid">
-            <div class="review-card fade-up">
+            <a class="review-card fade-up" href="https://www.tripadvisor.de/Restaurants-g187383-Chemnitz_Saxony.html" target="_blank" rel="noopener">
                 <div class="review-stars">★★★★★</div>
                 <p class="review-text">„Alles war super, Essen mega lecker. Wir hatten verschiedene Salate und Vorspeisen und Schischlik mit Landkartoffeln, einfach ein Muss."</p>
                 <div class="review-author">
@@ -1700,11 +1771,11 @@
                         <div class="review-name">Catrin K.</div>
                         <div class="review-date">Oktober 2025</div>
                     </div>
-                    <span class="review-platform">TripAdvisor</span>
+                    <span class="review-platform-link">TripAdvisor</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="review-card fade-up delay-1">
+            <a class="review-card fade-up delay-1" href="https://www.tripadvisor.de/Restaurants-g187383-Chemnitz_Saxony.html" target="_blank" rel="noopener">
                 <div class="review-stars">★★★★★</div>
                 <p class="review-text">„Horovac ist mein Lieblingsessen. Der Wirt geht auf Wünsche ein. Das Fleisch ist von Top-Qualität. Die Zubereitung macht das Fleisch besonders lecker."</p>
                 <div class="review-author">
@@ -1713,11 +1784,11 @@
                         <div class="review-name">Klaus</div>
                         <div class="review-date">März 2025</div>
                     </div>
-                    <span class="review-platform">TripAdvisor</span>
+                    <span class="review-platform-link">TripAdvisor</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="review-card fade-up delay-2">
+            <a class="review-card fade-up delay-2" href="https://www.google.com/maps/search/Restaurant+Armenia+Blankenauer+Str+75+Chemnitz" target="_blank" rel="noopener">
                 <div class="review-stars">★★★★★</div>
                 <p class="review-text">„Super freundliche Wirtsleute, leckeres Essen – sehr empfehlenswert! Vegetarierfreundlich, kostenlose Parkplätze vorhanden."</p>
                 <div class="review-author">
@@ -1726,11 +1797,11 @@
                         <div class="review-name">Stephan G.</div>
                         <div class="review-date">2025</div>
                     </div>
-                    <span class="review-platform">Google</span>
+                    <span class="review-platform-link">Google</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="review-card fade-up delay-3">
+            <a class="review-card fade-up delay-3" href="https://www.tripadvisor.de/Restaurants-g187383-Chemnitz_Saxony.html" target="_blank" rel="noopener">
                 <div class="review-stars">★★★★★</div>
                 <p class="review-text">„Köstliche Küche mit aufmerksamen Gastgebern. Ein wirklich besonderes Restaurant – das einzige armenische in Sachsen und das zu Recht."</p>
                 <div class="review-author">
@@ -1739,11 +1810,11 @@
                         <div class="review-name">Bernd O.</div>
                         <div class="review-date">Februar 2026</div>
                     </div>
-                    <span class="review-platform">TripAdvisor</span>
+                    <span class="review-platform-link">TripAdvisor</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="review-card fade-up delay-1">
+            <a class="review-card fade-up delay-1" href="https://www.tripadvisor.de/Restaurants-g187383-Chemnitz_Saxony.html" target="_blank" rel="noopener">
                 <div class="review-stars">★★★★★</div>
                 <p class="review-text">„Amazing surprise. Very good restaurant – food is fantastic. Very good ambience. Service is very attentive."</p>
                 <div class="review-author">
@@ -1752,11 +1823,11 @@
                         <div class="review-name">Sandra V.</div>
                         <div class="review-date">2024</div>
                     </div>
-                    <span class="review-platform">TripAdvisor</span>
+                    <span class="review-platform-link">TripAdvisor</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="review-card fade-up delay-2">
+            <a class="review-card fade-up delay-2" href="https://www.google.com/maps/search/Restaurant+Armenia+Blankenauer+Str+75+Chemnitz" target="_blank" rel="noopener">
                 <div class="review-stars">★★★★★</div>
                 <p class="review-text">„Super freundlich, leckeres Essen. Sehr empfehlenswert!"</p>
                 <div class="review-author">
@@ -1765,9 +1836,9 @@
                         <div class="review-name">Rico S.</div>
                         <div class="review-date">2025</div>
                     </div>
-                    <span class="review-platform">Google</span>
+                    <span class="review-platform-link">Google</span>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </section>
@@ -1843,8 +1914,10 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="date">Datum * <small style="color:var(--stone);font-weight:400;text-transform:none;letter-spacing:0;">(Fr, Sa, So)</small></label>
-                            <input type="date" id="date" name="date" required>
+                            <label for="date">Datum *</label>
+                            <select id="date" name="date" required>
+                                <option value="">Datum wählen (Fr / Sa / So)</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="time">Uhrzeit *</label>
@@ -2042,40 +2115,43 @@
     });
 
     /* ===== SMART RESERVATION FORM ===== */
-    const dateInput = document.getElementById('date');
+    const dateSelect = document.getElementById('date');
     const timeSelect = document.getElementById('time');
     const adultsSelect = document.getElementById('adults');
     const childrenSelect = document.getElementById('children');
     const depositWarning = document.getElementById('depositWarning');
 
-    // Set min date to today
-    const today = new Date();
-    dateInput.min = today.toISOString().split('T')[0];
-
-    // Only allow Fri (5), Sat (6), Sun (0)
-    dateInput.addEventListener('change', function() {
-        const val = this.value;
-        if (!val) { timeSelect.innerHTML = '<option value="">Bitte Datum wählen</option>'; return; }
-        const d = new Date(val + 'T12:00:00');
-        const day = d.getDay(); // 0=Sun, 5=Fri, 6=Sat
-        if (day !== 5 && day !== 6 && day !== 0) {
-            this.value = '';
-            timeSelect.innerHTML = '<option value="">Bitte Datum wählen</option>';
-            alert('Wir haben nur Freitag, Samstag und Sonntag geöffnet. Bitte wählen Sie einen dieser Tage.');
-            return;
+    // Populate date select: next 12 weeks, only Fri/Sat/Sun
+    (function populateDates() {
+        const dayNames = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+        const today = new Date();
+        for (let i = 1; i <= 90; i++) {
+            const d = new Date(today);
+            d.setDate(today.getDate() + i);
+            const day = d.getDay();
+            if (day !== 5 && day !== 6 && day !== 0) continue;
+            const dd = String(d.getDate()).padStart(2, '0');
+            const mm = String(d.getMonth() + 1).padStart(2, '0');
+            const yyyy = d.getFullYear();
+            const opt = document.createElement('option');
+            opt.value = `${yyyy}-${mm}-${dd}`;
+            opt.textContent = `${dayNames[day]}, ${dd}.${mm}.${yyyy}`;
+            dateSelect.appendChild(opt);
         }
-        // Populate time slots
+    })();
+
+    function buildTimeSlots(day) {
         timeSelect.innerHTML = '<option value="">Uhrzeit wählen</option>';
-        let slots = [];
+        const slots = [];
         if (day === 5) {
-            // Freitag 17:00-21:30 (letzte Bestellung 21:30)
+            // Freitag: 17:00–21:30
             for (let h = 17; h <= 21; h++) {
                 slots.push(`${h}:00`);
                 if (h < 21) slots.push(`${h}:30`);
             }
             slots.push('21:30');
         } else {
-            // Samstag & Sonntag 11:30-21:30
+            // Samstag & Sonntag: 11:30–21:30
             for (let h = 11; h <= 21; h++) {
                 if (h === 11) { slots.push('11:30'); continue; }
                 slots.push(`${h}:00`);
@@ -2088,6 +2164,13 @@
             opt.value = s; opt.textContent = s + ' Uhr';
             timeSelect.appendChild(opt);
         });
+    }
+
+    dateSelect.addEventListener('change', function() {
+        const val = this.value;
+        if (!val) { timeSelect.innerHTML = '<option value="">Bitte Datum wählen</option>'; return; }
+        const day = new Date(val + 'T12:00:00').getDay();
+        buildTimeSlots(day);
     });
 
     // Deposit warning for 10+ persons
@@ -2104,6 +2187,7 @@
         e.preventDefault();
         document.getElementById('formSuccess').style.display = 'block';
         e.target.reset();
+        dateSelect.value = '';
         timeSelect.innerHTML = '<option value="">Bitte Datum wählen</option>';
         depositWarning.style.display = 'none';
         setTimeout(() => { document.getElementById('formSuccess').style.display = 'none'; }, 6000);
