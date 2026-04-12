@@ -895,6 +895,7 @@
 
             /* — Nav full-screen overlay — */
             .nav-links {
+                display: none;
                 position: fixed; inset: 0;
                 background: rgba(18, 16, 14, 0.97);
                 backdrop-filter: blur(10px);
@@ -906,16 +907,11 @@
                 margin-left: 0;
                 z-index: 999;
                 opacity: 0;
-                visibility: hidden;
-                pointer-events: none;
-                transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+                transition: opacity 0.3s ease;
                 overflow: hidden;
             }
             .nav-links.open {
                 opacity: 1;
-                visibility: visible;
-                pointer-events: auto;
-                transition: opacity 0.3s ease, visibility 0s linear 0s;
             }
             .nav-links li { width: auto; text-align: center; }
             .nav-links a {
@@ -2132,16 +2128,24 @@
     });
 
     function openNav() {
+        navLinks.style.display = 'flex';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            navLinks.classList.add('open');
+        }));
         navToggle.classList.add('open');
-        navLinks.classList.add('open');
         navBackdrop.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
     function closeNav() {
-        navToggle.classList.remove('open');
         navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
         navBackdrop.classList.remove('open');
         document.body.style.overflow = '';
+        setTimeout(() => {
+            if (!navLinks.classList.contains('open')) {
+                navLinks.style.display = 'none';
+            }
+        }, 320);
     }
 
     navToggle.addEventListener('click', () => {
