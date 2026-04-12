@@ -625,24 +625,19 @@
         #kontakt { background: var(--white); }
         .kontakt-grid {
             display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 3rem;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
             align-items: start;
         }
-        .kontakt-info-blocks {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.2rem 2rem;
-        }
-        .kontakt-info-block { margin-bottom: 0; }
+        .kontakt-info-block { margin-bottom: 2.2rem; }
         .kontakt-info-block h4 {
             font-family: 'Raleway', sans-serif;
-            font-size: 0.68rem; font-weight: 700;
+            font-size: 0.7rem; font-weight: 700;
             letter-spacing: 0.2em; text-transform: uppercase;
-            color: var(--red); margin-bottom: 0.5rem;
+            color: var(--red); margin-bottom: 0.8rem;
         }
         .kontakt-info-block p, .kontakt-info-block a {
-            font-size: 0.88rem; line-height: 1.7; color: var(--text);
+            font-size: 0.95rem; line-height: 1.9; color: var(--text);
         }
         .kontakt-info-block a:hover { color: var(--red); }
 
@@ -968,12 +963,12 @@
             .info-item {
                 border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07);
                 max-width: 100%; width: 100%;
-                padding: 16px 5%;
-                gap: 12px;
+                padding: 11px 5%;
+                gap: 10px;
             }
-            .info-icon { font-size: 1.2rem; }
-            .info-text { font-size: 0.82rem; }
-            .info-text strong { font-size: 0.88rem; }
+            .info-icon { font-size: 1rem; }
+            .info-text { font-size: 0.75rem; }
+            .info-text strong { font-size: 0.78rem; white-space: nowrap; }
 
             /* — About — */
             .about-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -1028,7 +1023,6 @@
 
             /* — Kontakt / Form — */
             .kontakt-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-            .kontakt-info-blocks { grid-template-columns: 1fr 1fr; }
             .form-row { grid-template-columns: 1fr; }
             .form-group input,
             .form-group textarea,
@@ -1160,7 +1154,7 @@
     <div class="info-item fade-up delay-1">
         <div class="info-icon">⏰</div>
         <div class="info-text">
-            <strong>Fr: 17:00–22:00 · Sa &amp; So: 11:30–22:00</strong>
+            <strong>Fr 17–22 · Sa &amp; So 11:30–22 Uhr</strong>
             Mo – Do: Geschlossen
         </div>
     </div>
@@ -1721,8 +1715,7 @@
             <div class="section-divider center"></div>
         </div>
         <div class="gallery-tabs">
-            <button class="gallery-tab active" data-filter="all">Alle</button>
-            <button class="gallery-tab" data-filter="restaurant">Restaurant</button>
+            <button class="gallery-tab active" data-filter="restaurant">Restaurant</button>
             <button class="gallery-tab" data-filter="speisen">Speisen</button>
         </div>
         <div class="gallery-grid fade-up">
@@ -1926,7 +1919,6 @@
         <div class="kontakt-grid">
             <!-- Info -->
             <div class="fade-up">
-                <div class="kontakt-info-blocks">
                 <div class="kontakt-info-block">
                     <h4>Öffnungszeiten</h4>
                     <div class="hours-table">
@@ -1967,7 +1959,6 @@
                         </a>
                     </div>
                 </div>
-                </div><!-- end kontakt-info-blocks -->
             </div>
             <!-- Formular -->
             <div class="fade-up delay-1" id="rezervare">
@@ -2187,14 +2178,17 @@
     }
 
     /* ===== GALLERY TABS ===== */
+    function applyGalleryFilter(filter) {
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.classList.toggle('hidden', item.dataset.category !== filter);
+        });
+    }
+    applyGalleryFilter('restaurant'); // default: Restaurant
     document.querySelectorAll('.gallery-tab').forEach(tab => {
         tab.addEventListener('click', () => {
             document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            const filter = tab.dataset.filter;
-            document.querySelectorAll('.gallery-item').forEach(item => {
-                item.classList.toggle('hidden', filter !== 'all' && item.dataset.category !== filter);
-            });
+            applyGalleryFilter(tab.dataset.filter);
         });
     });
 
