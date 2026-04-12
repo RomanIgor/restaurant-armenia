@@ -896,17 +896,27 @@
 
             /* — Nav — */
             .nav-links {
-                display: none; flex-direction: column; align-items: flex-start; gap: 0;
+                flex-direction: column; align-items: flex-start; gap: 0;
+                margin-left: 0;
                 position: fixed; top: 0; right: 0; bottom: 0; width: min(280px, 80vw);
                 background: #1C1A18;
                 padding: calc(var(--nav-h) + 1.5rem) 2rem 2rem;
                 box-shadow: -6px 0 40px rgba(0,0,0,0.6);
                 overflow-y: auto;
                 z-index: 999;
-                transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
                 transform: translateX(100%);
+                visibility: hidden;
+                pointer-events: none;
+                transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                            visibility 0s linear 0.35s;
             }
-            .nav-links.open { display: flex; transform: translateX(0); }
+            .nav-links.open {
+                transform: translateX(0);
+                visibility: visible;
+                pointer-events: auto;
+                transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                            visibility 0s linear 0s;
+            }
             .nav-links a {
                 padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
                 width: 100%; font-size: 0.95rem; letter-spacing: 0.06em;
