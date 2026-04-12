@@ -893,34 +893,65 @@
         @media (max-width: 768px) {
             :root { --nav-h: 60px; --section-pad: 56px; }
 
-            /* — Nav — */
+            /* — Nav full-screen overlay — */
             .nav-links {
-                flex-direction: column; align-items: flex-start; gap: 0;
+                position: fixed; inset: 0;
+                background: rgba(18, 16, 14, 0.97);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.2rem;
                 margin-left: 0;
-                position: fixed; top: 0; right: 0; bottom: 0; width: min(280px, 80vw);
-                background: #1C1A18;
-                padding: calc(var(--nav-h) + 1.5rem) 2rem 2rem;
-                box-shadow: -6px 0 40px rgba(0,0,0,0.6);
-                overflow-y: auto;
                 z-index: 999;
-                transform: translateX(100%);
+                opacity: 0;
                 visibility: hidden;
                 pointer-events: none;
-                transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-                            visibility 0s linear 0.35s;
+                transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+                overflow: hidden;
             }
             .nav-links.open {
-                transform: translateX(0);
+                opacity: 1;
                 visibility: visible;
                 pointer-events: auto;
-                transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-                            visibility 0s linear 0s;
+                transition: opacity 0.3s ease, visibility 0s linear 0s;
             }
+            .nav-links li { width: auto; text-align: center; }
             .nav-links a {
-                padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
-                width: 100%; font-size: 0.95rem; letter-spacing: 0.06em;
+                font-family: 'Playfair Display', serif;
+                font-size: clamp(1.5rem, 6vw, 2rem);
+                font-weight: 400;
+                color: rgba(255,255,255,0.65);
+                padding: 0.5rem 2rem;
+                letter-spacing: 0.02em;
+                text-transform: none;
+                border: none;
+                width: auto;
+                opacity: 0;
+                transform: translateY(14px);
+                transition: color 0.2s, opacity 0.35s ease, transform 0.35s ease;
             }
-            .nav-links .btn { margin: 1.2rem 0 0; width: 100%; text-align: center; padding: 14px; }
+            .nav-links a::after { display: none; }
+            .nav-links a:hover, .nav-links a:active { color: var(--gold); }
+            /* stagger */
+            .nav-links.open li:nth-child(1) a { opacity:1; transform:none; transition-delay:0.05s; }
+            .nav-links.open li:nth-child(2) a { opacity:1; transform:none; transition-delay:0.10s; }
+            .nav-links.open li:nth-child(3) a { opacity:1; transform:none; transition-delay:0.15s; }
+            .nav-links.open li:nth-child(4) a { opacity:1; transform:none; transition-delay:0.20s; }
+            .nav-links.open li:nth-child(5) a { opacity:1; transform:none; transition-delay:0.25s; }
+            .nav-links.open li:nth-child(6) a { opacity:1; transform:none; transition-delay:0.30s; }
+            .nav-links.open li:nth-child(7) a { opacity:1; transform:none; transition-delay:0.35s; }
+            .nav-links .btn {
+                margin-top: 1.5rem;
+                padding: 14px 44px;
+                font-size: 0.78rem;
+                width: auto;
+                opacity: 0;
+                transform: translateY(14px);
+                transition: opacity 0.35s ease 0.40s, transform 0.35s ease 0.40s, background 0.25s;
+            }
+            .nav-links.open .btn { opacity: 1; transform: none; }
             .nav-toggle { display: flex; margin-left: auto; }
 
             /* — Hero — */
@@ -2117,6 +2148,9 @@
         navLinks.classList.contains('open') ? closeNav() : openNav();
     });
     navBackdrop.addEventListener('click', closeNav);
+    navLinks.addEventListener('click', (e) => {
+        if (e.target === navLinks || e.target.tagName === 'UL') closeNav();
+    });
     navLinks.querySelectorAll('a').forEach(a => {
         a.addEventListener('click', closeNav);
     });
