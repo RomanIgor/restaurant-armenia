@@ -145,31 +145,30 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
             cursor: pointer;
             z-index: 1100;
             margin-left: auto;
             width: 44px; height: 44px;
-            border: 1px solid rgba(255,255,255,0.25);
-            background: rgba(255,255,255,0.08);
             flex-shrink: 0;
-            transition: background 0.25s, border-color 0.25s;
+            background: none;
+            border: none;
+            padding: 0;
         }
-        .nav-toggle:hover { background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.4); }
-        #navbar.scrolled .nav-toggle { border-color: rgba(255,255,255,0.2); }
         .nav-toggle span {
             display: block;
-            height: 1.5px;
+            width: 26px;
+            height: 2px;
             background: var(--white);
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
             border-radius: 2px;
+            transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                        opacity 0.2s ease,
+                        width 0.35s ease;
         }
-        .nav-toggle span:nth-child(1) { width: 20px; }
-        .nav-toggle span:nth-child(2) { width: 14px; align-self: flex-start; margin-left: 12px; }
-        .nav-toggle span:nth-child(3) { width: 20px; }
-        .nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); width: 20px; }
-        .nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-        .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); width: 20px; }
+        /* X animatie: translateY = gap + height = 6 + 2 = 8px */
+        .nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; width: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
         /* nav backdrop */
         .nav-backdrop {
@@ -922,7 +921,7 @@
                 width: 100%; font-size: 0.95rem; letter-spacing: 0.06em;
             }
             .nav-links .btn { margin: 1.2rem 0 0; width: 100%; text-align: center; padding: 14px; }
-            .nav-toggle { display: flex; margin-left: auto; padding: 10px; }
+            .nav-toggle { display: flex; margin-left: auto; }
 
             /* — Hero — */
             #home { min-height: 100svh; }
