@@ -615,19 +615,24 @@
         #kontakt { background: var(--white); }
         .kontakt-grid {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 4rem;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 3rem;
             align-items: start;
         }
-        .kontakt-info-block { margin-bottom: 2.2rem; }
+        .kontakt-info-blocks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem 2rem;
+        }
+        .kontakt-info-block { margin-bottom: 0; }
         .kontakt-info-block h4 {
             font-family: 'Raleway', sans-serif;
-            font-size: 0.7rem; font-weight: 700;
+            font-size: 0.68rem; font-weight: 700;
             letter-spacing: 0.2em; text-transform: uppercase;
-            color: var(--red); margin-bottom: 0.8rem;
+            color: var(--red); margin-bottom: 0.5rem;
         }
         .kontakt-info-block p, .kontakt-info-block a {
-            font-size: 0.95rem; line-height: 1.9; color: var(--text);
+            font-size: 0.88rem; line-height: 1.7; color: var(--text);
         }
         .kontakt-info-block a:hover { color: var(--red); }
 
@@ -718,16 +723,17 @@
         .footer-bottom a:hover { color: var(--gold); }
 
         /* social */
-        .social-links { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
+        .social-links { display: flex; gap: 0.8rem; margin-top: 0.6rem; }
         .social-link {
-            width: 36px; height: 36px;
-            border: 1px solid rgba(255,255,255,0.15);
+            width: 44px; height: 44px;
+            border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            color: rgba(255,255,255,0.5);
-            transition: all 0.25s;
-            font-size: 0.9rem;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: #fff;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 4px 14px rgba(188,24,136,0.4);
         }
-        .social-link:hover { border-color: var(--gold); color: var(--gold); }
+        .social-link:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(188,24,136,0.55); }
 
         /* ========== ANIMATIONS ========== */
         /* Default: visible — JS adds .will-animate to enable fade-in effect */
@@ -1012,6 +1018,7 @@
 
             /* — Kontakt / Form — */
             .kontakt-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .kontakt-info-blocks { grid-template-columns: 1fr 1fr; }
             .form-row { grid-template-columns: 1fr; }
             .form-group input,
             .form-group textarea,
@@ -1911,6 +1918,7 @@
         <div class="kontakt-grid">
             <!-- Info -->
             <div class="fade-up">
+                <div class="kontakt-info-blocks">
                 <div class="kontakt-info-block">
                     <h4>Öffnungszeiten</h4>
                     <div class="hours-table">
@@ -1947,10 +1955,11 @@
                     <h4>Folgen Sie uns</h4>
                     <div class="social-links">
                         <a href="https://www.instagram.com/restaurant__armenia/" target="_blank" rel="noopener" class="social-link" title="Instagram">
-                            <svg viewBox="0 0 24 24" width="16" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                            <svg viewBox="0 0 24 24" width="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-linecap="round"/></svg>
                         </a>
                     </div>
                 </div>
+                </div><!-- end kontakt-info-blocks -->
             </div>
             <!-- Formular -->
             <div class="fade-up delay-1" id="rezervare">
@@ -2002,7 +2011,23 @@
                                 <option value="12">12</option>
                                 <option value="13">13</option>
                                 <option value="14">14</option>
-                                <option value="15">15+</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="35">35</option>
+                                <option value="40">40</option>
+                                <option value="45">45</option>
+                                <option value="50">50</option>
+                                <option value="55">55</option>
+                                <option value="60">60</option>
+                                <option value="65">65</option>
+                                <option value="70">70</option>
+                                <option value="70+">Mehr als 70</option>
                             </select>
                         </div>
                         <div class="form-group">
