@@ -140,11 +140,47 @@
         .nav-links .btn { margin-left: 0.5rem; padding: 10px 22px; font-size: 0.75rem; }
 
         /* hamburger */
-        .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100; }
-        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); transition: all 0.3s; }
-        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .nav-toggle.open span:nth-child(2) { opacity: 0; }
-        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1100;
+            margin-left: auto;
+            width: 44px; height: 44px;
+            border: 1px solid rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.08);
+            flex-shrink: 0;
+            transition: background 0.25s, border-color 0.25s;
+        }
+        .nav-toggle:hover { background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.4); }
+        #navbar.scrolled .nav-toggle { border-color: rgba(255,255,255,0.2); }
+        .nav-toggle span {
+            display: block;
+            height: 1.5px;
+            background: var(--white);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            border-radius: 2px;
+        }
+        .nav-toggle span:nth-child(1) { width: 20px; }
+        .nav-toggle span:nth-child(2) { width: 14px; align-self: flex-start; margin-left: 12px; }
+        .nav-toggle span:nth-child(3) { width: 20px; }
+        .nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); width: 20px; }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); width: 20px; }
+
+        /* nav backdrop */
+        .nav-backdrop {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.55);
+            z-index: 998;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+        .nav-backdrop.open { display: block; }
 
         /* ========== HERO ========== */
         #home {
@@ -862,12 +898,15 @@
             .nav-links {
                 display: none; flex-direction: column; align-items: flex-start; gap: 0;
                 position: fixed; top: 0; right: 0; bottom: 0; width: min(280px, 80vw);
-                background: var(--dark);
+                background: #1C1A18;
                 padding: calc(var(--nav-h) + 1.5rem) 2rem 2rem;
-                box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+                box-shadow: -6px 0 40px rgba(0,0,0,0.6);
                 overflow-y: auto;
+                z-index: 999;
+                transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+                transform: translateX(100%);
             }
-            .nav-links.open { display: flex; }
+            .nav-links.open { display: flex; transform: translateX(0); }
             .nav-links a {
                 padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
                 width: 100%; font-size: 0.95rem; letter-spacing: 0.06em;
@@ -1043,9 +1082,10 @@
         <li><a href="#anlaesse">Anlässe</a></li>
         <li><a href="#rezensionen">Rezensionen</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
-        <li><a href="#kontakt" class="btn btn-primary">Reservieren</a></li>
+        <li><a href="#rezervare" class="btn btn-primary">Reservieren</a></li>
     </ul>
 </nav>
+<div class="nav-backdrop" id="navBackdrop"></div>
 
 <!-- ===== HERO ===== -->
 <section id="home">
@@ -1057,7 +1097,7 @@
         <p class="hero-subtitle">Authentische Aromen aus dem Herzen des Kaukasus</p>
         <div class="hero-buttons">
             <a href="#speisekarte" class="btn btn-primary">Zur Speisekarte</a>
-            <a href="#kontakt" class="btn btn-outline">Tisch reservieren</a>
+            <a href="#rezervare" class="btn btn-outline">Tisch reservieren</a>
         </div>
     </div>
     <div class="hero-scroll">
@@ -1896,7 +1936,7 @@
                 </div>
             </div>
             <!-- Formular -->
-            <div class="fade-up delay-1">
+            <div class="fade-up delay-1" id="rezervare">
                 <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
                     <div class="form-row">
                         <div class="form-group">
@@ -2032,7 +2072,7 @@
 </footer>
 
 <!-- Floating Reservation Button -->
-<a href="#kontakt" class="fab" id="fab" style="display:none;">
+<a href="#rezervare" class="fab" id="fab" style="display:none;">
     <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
     Reservieren
 </a>
@@ -2043,27 +2083,33 @@
     const fab = document.getElementById('fab');
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
+    const navBackdrop = document.getElementById('navBackdrop');
 
     window.addEventListener('scroll', () => {
         const y = window.scrollY;
-        if (y > 80) {
-            navbar.classList.add('scrolled');
-            fab.style.display = 'flex';
-        } else {
-            navbar.classList.remove('scrolled');
-            fab.style.display = 'none';
-        }
+        navbar.classList.toggle('scrolled', y > 80);
+        fab.style.display = y > 80 ? 'flex' : 'none';
     });
 
+    function openNav() {
+        navToggle.classList.add('open');
+        navLinks.classList.add('open');
+        navBackdrop.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeNav() {
+        navToggle.classList.remove('open');
+        navLinks.classList.remove('open');
+        navBackdrop.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
     navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('open');
-        navLinks.classList.toggle('open');
+        navLinks.classList.contains('open') ? closeNav() : openNav();
     });
+    navBackdrop.addEventListener('click', closeNav);
     navLinks.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-            navToggle.classList.remove('open');
-            navLinks.classList.remove('open');
-        });
+        a.addEventListener('click', closeNav);
     });
 
     /* ===== SCROLL ANIMATIONS ===== */
