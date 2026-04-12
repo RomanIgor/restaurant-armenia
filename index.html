@@ -146,15 +146,16 @@
         /* hamburger */
         .nav-toggle {
             display: none;
+            position: fixed;
+            top: calc((var(--nav-h) - 44px) / 2);
+            right: 5%;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             gap: 6px;
             cursor: pointer;
-            z-index: 1100;
-            margin-left: auto;
+            z-index: 10000;
             width: 44px; height: 44px;
-            flex-shrink: 0;
             background: none;
             border: none;
             padding: 0;
@@ -931,7 +932,7 @@
                 transition: opacity 0.35s ease 0.40s, transform 0.35s ease 0.40s, background 0.25s;
             }
             .nav-links.open .btn { opacity: 1; transform: none; }
-            .nav-toggle { display: flex; margin-left: auto; z-index: 10000; }
+            .nav-toggle { display: flex; }
             .nav-toggle.open span { background: var(--white); }
 
             /* — Hero — */
@@ -1091,10 +1092,11 @@
 <nav id="navbar">
     <a href="#home" class="nav-logo">
         <img src="logo.png" alt="Restaurant Armenia"></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
-        <span></span><span></span><span></span>
-    </button>
 </nav>
+<!-- nav-toggle OUTSIDE nav — fixes z-index stacking context so X is above overlay -->
+<button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+</button>
 <!-- nav-links OUTSIDE nav — fix backdrop-filter containing-block bug on Android -->
 <ul class="nav-links" id="navLinks">
     <li><a href="#restaurant">Restaurant</a></li>
