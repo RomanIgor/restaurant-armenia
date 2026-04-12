@@ -1114,7 +1114,7 @@
         <span></span><span></span><span></span>
     </button>
 </nav>
-<!-- nav-links is OUTSIDE nav to avoid backdrop-filter containing-block bug -->
+<!-- nav-links OUTSIDE nav — fix backdrop-filter containing-block bug on Android -->
 <ul class="nav-links" id="navLinks">
     <li><a href="#restaurant">Restaurant</a></li>
     <li><a href="#speisekarte">Speisekarte</a></li>
@@ -1125,6 +1125,7 @@
     <li><a href="#kontakt">Kontakt</a></li>
     <li><a href="#rezervare" class="btn btn-primary">Reservieren</a></li>
 </ul>
+<div class="nav-backdrop" id="navBackdrop"></div>
 
 <!-- ===== HERO ===== -->
 <section id="home">
