@@ -278,6 +278,8 @@
             color: rgba(255,255,255,0.75);
         }
         .info-item:last-child { border-right: none; }
+        a.info-item { text-decoration: none; transition: background 0.2s; }
+        a.info-item:hover { background: rgba(197,160,40,0.08); }
         .info-icon { font-size: 1.1rem; color: var(--gold); flex-shrink: 0; }
         .info-text { font-family: 'Raleway', sans-serif; font-size: 0.72rem; line-height: 1.4; }
         .info-text strong { display: block; color: var(--white); font-size: 0.76rem; }
@@ -1148,13 +1150,13 @@
 
 <!-- ===== INFO STRIP ===== -->
 <div class="info-strip">
-    <div class="info-item fade-up">
+    <a class="info-item fade-up" href="https://maps.app.goo.gl/2dmSZPZLVj2o3Zd17" target="_blank" rel="noopener">
         <div class="info-icon">📍</div>
         <div class="info-text">
             <strong>Blankenauer Str. 75</strong>
             09113 Chemnitz
         </div>
-    </div>
+    </a>
     <div class="info-item fade-up delay-1">
         <div class="info-icon">⏰</div>
         <div class="info-text">
@@ -1162,20 +1164,20 @@
             Mo–Do: Geschlossen
         </div>
     </div>
-    <div class="info-item fade-up delay-2">
+    <a class="info-item fade-up delay-2" href="tel:+4937147903 58">
         <div class="info-icon">📞</div>
         <div class="info-text">
-            <strong><a href="tel:+4937147903 58" style="color:white;">+49 371 479 03 58</a></strong>
+            <strong>+49 371 479 03 58</strong>
             info@restaurant-armenia.de
         </div>
-    </div>
-    <div class="info-item fade-up delay-3">
+    </a>
+    <a class="info-item fade-up delay-3" href="#rezervare">
         <div class="info-icon">🍽️</div>
         <div class="info-text">
             <strong>Tischreservierung</strong>
             Jetzt online reservieren
         </div>
-    </div>
+    </a>
 </div>
 
 <!-- ===== RESTAURANT / ABOUT ===== -->
