@@ -84,9 +84,9 @@ document.getElementById('menuTabs').addEventListener('click', (e) => {
 /* ===== LIGHTBOX ===== */
 const images = [
     '1.jpeg','5.jpeg','10.jpeg','11.jpeg',
-    'food_images/20.jpeg','food_images/13.jpeg','food_images/12.jpeg',
-    'food_images/27.jpeg','food_images/28.jpeg','food_images/29.jpeg',
-    'food_images/30.jpeg','food_images/31.jpeg','food_images/32.jpeg'
+    'food_images/20.jpeg','food_images/13.jpeg','food_images/27.jpeg',
+    'food_images/35.jpeg','food_images/28.jpeg','food_images/33.jpeg',
+    'food_images/30.jpeg','food_images/34.jpeg','food_images/32.jpeg'
 ];
 let currentImg = 0;
 const lightbox = document.getElementById('lightbox');
