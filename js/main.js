@@ -82,7 +82,12 @@ document.getElementById('menuTabs').addEventListener('click', (e) => {
 });
 
 /* ===== LIGHTBOX ===== */
-const images = ['food_images/20.jpeg','5.jpeg','10.jpeg','food_images/13.jpeg','1.jpeg','food_images/12.jpeg'];
+const images = [
+    '1.jpeg','5.jpeg','10.jpeg','11.jpeg',
+    'food_images/20.jpeg','food_images/13.jpeg','food_images/12.jpeg',
+    'food_images/27.jpeg','food_images/28.jpeg','food_images/29.jpeg',
+    'food_images/30.jpeg','food_images/31.jpeg','food_images/32.jpeg'
+];
 let currentImg = 0;
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
