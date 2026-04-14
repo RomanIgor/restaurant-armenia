@@ -147,18 +147,20 @@ function buildTimeSlots(day) {
     timeSelect.innerHTML = '<option value="">Uhrzeit wählen</option>';
     const slots = [];
     if (day === 5) {
+        // Freitag: 17:00 – 22:00
         for (let h = 17; h <= 21; h++) {
-            slots.push(`${h}:00`);
-            if (h < 21) slots.push(`${h}:30`);
+            slots.push(`${String(h).padStart(2,'0')}:00`);
+            slots.push(`${String(h).padStart(2,'0')}:30`);
         }
-        slots.push('21:30');
+        slots.push('22:00');
     } else {
-        for (let h = 11; h <= 21; h++) {
-            if (h === 11) { slots.push('11:30'); continue; }
-            slots.push(`${h}:00`);
-            if (h < 21) slots.push(`${h}:30`);
+        // Samstag / Sonntag: 11:30 – 22:00
+        slots.push('11:30');
+        for (let h = 12; h <= 21; h++) {
+            slots.push(`${String(h).padStart(2,'0')}:00`);
+            slots.push(`${String(h).padStart(2,'0')}:30`);
         }
-        slots.push('21:30');
+        slots.push('22:00');
     }
     slots.forEach(s => {
         const opt = document.createElement('option');
@@ -167,12 +169,16 @@ function buildTimeSlots(day) {
     });
 }
 
-dateSelect.addEventListener('change', function() {
-    const val = this.value;
-    if (!val) { timeSelect.innerHTML = '<option value="">Bitte Datum wählen</option>'; return; }
+function onDateChange() {
+    const val = dateSelect.value;
+    if (!val) { timeSelect.innerHTML = '<option value="">Uhrzeit wählen</option>'; return; }
     const day = new Date(val + 'T12:00:00').getDay();
     buildTimeSlots(day);
-});
+}
+
+// 'input' as fallback for iOS Safari where 'change' may not fire
+dateSelect.addEventListener('change', onDateChange);
+dateSelect.addEventListener('input', onDateChange);
 
 function checkDeposit() {
     const adults = parseInt(adultsSelect.value) || 0;
@@ -188,7 +194,7 @@ function handleSubmit(e) {
     document.getElementById('formSuccess').style.display = 'block';
     e.target.reset();
     dateSelect.value = '';
-    timeSelect.innerHTML = '<option value="">Bitte Datum wählen</option>';
+    timeSelect.innerHTML = '<option value="">Uhrzeit wählen</option>';
     depositWarning.style.display = 'none';
     setTimeout(() => { document.getElementById('formSuccess').style.display = 'none'; }, 6000);
 }
