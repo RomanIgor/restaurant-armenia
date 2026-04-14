@@ -229,6 +229,21 @@
             margin-bottom: 2.5rem;
         }
         .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .hero-instagram {
+            display: inline-flex; align-items: center; gap: 8px;
+            margin-top: 1.25rem;
+            color: rgba(255,255,255,0.75);
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            text-decoration: none;
+            transition: color 0.25s;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 2px;
+        }
+        .hero-instagram svg { width: 15px; stroke: rgba(255,255,255,0.75); transition: stroke 0.25s; }
+        .hero-instagram:hover { color: #fff; }
+        .hero-instagram:hover svg { stroke: #fff; }
 
         .hero-scroll {
             position: absolute; bottom: 2rem; left: 50%;
