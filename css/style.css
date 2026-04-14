@@ -823,6 +823,79 @@
         }
         .social-link:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(188,24,136,0.55); }
 
+        /* ========== INSTAGRAM CTA ========== */
+        .instagram-cta {
+            background: linear-gradient(135deg, #1a0a2e 0%, #2d1057 40%, #831059 75%, #c13584 100%);
+            padding: 60px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .instagram-cta::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 70% 50%, rgba(253,29,29,0.15), transparent 60%),
+                        radial-gradient(ellipse at 30% 50%, rgba(131,58,180,0.2), transparent 60%);
+        }
+        .instagram-cta-inner {
+            position: relative; z-index: 1;
+            max-width: 600px; margin: 0 auto;
+            display: flex; flex-direction: column; align-items: center; gap: 18px;
+        }
+        .instagram-cta-icon {
+            width: 64px; height: 64px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        .instagram-cta-icon svg { width: 32px; height: 32px; stroke: #fff; fill: none; stroke-width: 1.8; }
+        .instagram-cta h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem; font-weight: 600;
+            color: #fff;
+            line-height: 1.25;
+        }
+        .instagram-cta-handle {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.88rem; letter-spacing: 0.12em;
+            color: rgba(255,255,255,0.65);
+        }
+        .instagram-cta-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: #fff; color: #831059;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.82rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            padding: 14px 32px; border-radius: 6px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+            text-decoration: none;
+        }
+        .instagram-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.35); }
+        .instagram-cta-btn svg { width: 18px; height: 18px; stroke: #831059; fill: none; stroke-width: 2; }
+
+        /* Vorbestellung banner */
+        .vorbestellung-banner {
+            display: flex; align-items: center; gap: 12px;
+            background: rgba(197,160,40,0.1);
+            border: 1px solid rgba(197,160,40,0.35);
+            border-radius: 8px;
+            padding: 14px 20px;
+            margin-bottom: 1.5rem;
+        }
+        .vorbestellung-banner-icon {
+            font-size: 1.2rem; flex-shrink: 0;
+        }
+        .vorbestellung-banner p {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.82rem; font-weight: 600;
+            color: var(--gold);
+            line-height: 1.5;
+            margin: 0;
+        }
+
         /* ========== ANIMATIONS ========== */
         .fade-up { opacity: 1; transform: none; }
         .fade-up.will-animate {
