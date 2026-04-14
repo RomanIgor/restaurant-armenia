@@ -75,7 +75,6 @@
         <div class="info-icon">📞</div>
         <div class="info-text">
             <strong>+49 371 479 03 58</strong>
-            info@restaurant-armenia.de
         </div>
     </a>
     <a class="info-item fade-up delay-3" href="#rezervare">
@@ -113,20 +112,7 @@
                     Unser Küchenchef verwöhnt Sie mit authentischen armenischen Rezepten, frischen Zutaten und Gewürzen,
                     die direkt an die Aromen des Ararat-Landes erinnern.
                 </p>
-                <div class="about-highlights">
-                    <div class="highlight-item">
-                        <div class="highlight-num">45+</div>
-                        <div class="highlight-label">Gerichte</div>
-                    </div>
-                    <div class="highlight-item">
-                        <div class="highlight-num">1</div>
-                        <div class="highlight-label">In Sachsen</div>
-                    </div>
-                    <div class="highlight-item">
-                        <div class="highlight-num">100%</div>
-                        <div class="highlight-label">Authentisch</div>
-                    </div>
-                </div>
+
                 <a href="#speisekarte" class="btn btn-primary">Speisekarte ansehen</a>
             </div>
         </div>
@@ -699,17 +685,24 @@
 </div>
 
 <!-- ===== GUTSCHEIN ===== -->
-<section id="gutschein" class="section" style="background: var(--dark); padding: 80px 0;">
-    <div class="section-inner" style="max-width: 900px; margin: 0 auto; padding: 0 5%; display: flex; align-items: center; gap: 60px; flex-wrap: wrap;">
-        <div class="fade-up" style="flex: 1; min-width: 280px;">
-            <img src="gutschein.jpeg" alt="Gutschein Restaurant Armenia" style="width: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
-        </div>
-        <div class="fade-up delay-1" style="flex: 1; min-width: 260px;">
+<section id="gutschein" class="section" style="background: var(--dark); padding: 90px 0;">
+    <div class="section-inner" style="max-width: 800px; margin: 0 auto; padding: 0 5%; text-align: center;">
+        <div class="fade-up">
             <span class="section-label" style="color: var(--gold);">Geschenkidee</span>
-            <h2 style="font-family: 'Playfair Display', serif; color: #fff; font-size: 2rem; margin: 12px 0 16px;">Verschenken Sie<br>ein Erlebnis</h2>
-            <div class="section-divider" style="background: var(--gold); width: 50px; height: 2px; margin-bottom: 20px;"></div>
-            <p style="color: var(--stone); line-height: 1.8; margin-bottom: 28px;">Überraschen Sie Ihre Liebsten mit einem Gutschein für ein unvergessliches armenisches Dinner. Erhältlich in beliebiger Höhe – direkt im Restaurant oder telefonisch.</p>
-            <a href="tel:+4937147903 58" style="display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: #fff; padding: 14px 28px; border-radius: 8px; font-family: 'Raleway', sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: 0.05em;">
+            <h2 style="font-family: 'Playfair Display', serif; color: #fff; font-size: 2.2rem; margin: 12px 0 14px;">Verschenken Sie ein Erlebnis</h2>
+            <div style="width: 50px; height: 2px; background: var(--gold); margin: 0 auto 32px;"></div>
+        </div>
+        <div class="fade-up delay-1" style="margin-bottom: 36px;">
+            <img src="gutschein.jpeg" alt="Gutschein Restaurant Armenia"
+                 style="width: 100%; max-width: 680px; border-radius: 16px;
+                        box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(197,160,40,0.3);
+                        transform: perspective(1000px) rotateX(2deg);">
+        </div>
+        <div class="fade-up delay-2">
+            <p style="color: var(--stone); line-height: 1.9; font-size: 1.05rem; max-width: 520px; margin: 0 auto 32px;">
+                Überraschen Sie Ihre Liebsten mit einem Gutschein für ein unvergessliches armenisches Dinner. Erhältlich in beliebiger Höhe – direkt im Restaurant oder telefonisch.
+            </p>
+            <a href="tel:+4937147903 58" style="display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: #fff; padding: 16px 36px; border-radius: 8px; font-family: 'Raleway', sans-serif; font-weight: 600; font-size: 1rem; letter-spacing: 0.06em; box-shadow: 0 8px 30px rgba(197,160,40,0.35);">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/></svg>
                 Gutschein anfragen
             </a>
@@ -936,8 +929,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="email">E-Mail</label>
-                        <input type="email" id="email" name="email" placeholder="ihre@email.de">
+                        <label for="email">E-Mail <span style="color:red">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="ihre@email.de" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
@@ -949,7 +942,7 @@
                         <div class="form-group">
                             <label for="time">Uhrzeit *</label>
                             <select id="time" name="time" required>
-                                <option value="">Bitte Datum wählen</option>
+                                <option value="">Uhrzeit wählen</option>
                             </select>
                         </div>
                     </div>
@@ -1001,6 +994,17 @@
                                 <option value="5">5+</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="children_u6">Kinder bis 6 Jahre</label>
+                            <select id="children_u6" name="children_u6">
+                                <option value="0">Keine</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5+</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="deposit-warning" id="depositWarning">
                         ⚠️ Für Gruppen ab 10 Personen bitten wir um eine Anzahlung von <strong>10 € pro Person</strong>.
@@ -1008,7 +1012,7 @@
                     </div>
                     <div class="form-group">
                         <label for="message">Nachricht / Besondere Wünsche</label>
-                        <textarea id="message" name="message" placeholder="Anlass, Allergien, besondere Wünsche..."></textarea>
+                        <textarea id="message" name="message" placeholder="Besondere Wünsche..."></textarea>
                     </div>
                     <div class="form-success" id="formSuccess">
                         Vielen Dank! Ihre Reservierungsanfrage wurde gesendet. Wir melden uns in Kürze bei Ihnen.
