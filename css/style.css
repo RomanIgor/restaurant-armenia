@@ -779,6 +779,13 @@
             background: var(--white);
         }
         .form-group textarea { resize: vertical; min-height: 120px; }
+        .input-error { border-color: #e53935 !important; background: rgba(229,57,53,0.06) !important; }
+        .form-error {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.72rem;
+            color: #e53935;
+            margin-top: 2px;
+        }
         .form-success {
             display: none; padding: 14px;
             background: rgba(139,26,43,0.08);

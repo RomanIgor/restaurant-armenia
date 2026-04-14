@@ -191,8 +191,41 @@ childrenSelect.addEventListener('change', checkDeposit);
 /* ===== CONTACT FORM ===== */
 function handleSubmit(e) {
     e.preventDefault();
+    const form = e.target;
+
+    // Clear previous errors
+    form.querySelectorAll('.form-error').forEach(el => el.remove());
+    form.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
+
+    const required = [
+        { el: form.querySelector('#name'),    label: 'Name' },
+        { el: form.querySelector('#phone'),   label: 'Telefon' },
+        { el: form.querySelector('#email'),   label: 'E-Mail' },
+        { el: form.querySelector('#date'),    label: 'Datum' },
+        { el: form.querySelector('#time'),    label: 'Uhrzeit' },
+        { el: form.querySelector('#adults'),  label: 'Erwachsene' },
+    ];
+
+    let firstError = null;
+    required.forEach(({ el, label }) => {
+        if (!el || el.value.trim() === '' || el.value === '') {
+            el.classList.add('input-error');
+            const msg = document.createElement('span');
+            msg.className = 'form-error';
+            msg.textContent = `Bitte ${label} ausfüllen`;
+            el.closest('.form-group').appendChild(msg);
+            if (!firstError) firstError = el;
+        }
+    });
+
+    if (firstError) {
+        firstError.focus();
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+    }
+
     document.getElementById('formSuccess').style.display = 'block';
-    e.target.reset();
+    form.reset();
     dateSelect.value = '';
     timeSelect.innerHTML = '<option value="">Uhrzeit wählen</option>';
     depositWarning.style.display = 'none';
