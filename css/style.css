@@ -764,7 +764,7 @@
             .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 220px); }
             .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
             .about-img-accent { display: none; }
-            .anlaesse-grid { grid-template-columns: 1fr; }
+            .anlaesse-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 900px) {
             :root { --section-pad: 64px; }
@@ -798,7 +798,7 @@
         }
         .anlaesse-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
             position: relative;
         }
