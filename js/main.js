@@ -189,37 +189,51 @@ adultsSelect.addEventListener('change', checkDeposit);
 childrenSelect.addEventListener('change', checkDeposit);
 
 /* ===== CONTACT FORM ===== */
+function showFieldError(el, label) {
+    el.classList.add('input-error');
+    var group = el.parentElement;
+    while (group && !group.classList.contains('form-group')) {
+        group = group.parentElement;
+    }
+    if (group) {
+        var msg = document.createElement('span');
+        msg.className = 'form-error';
+        msg.textContent = '\u26a0 Bitte ' + label + ' ausf\u00fcllen';
+        group.appendChild(msg);
+    }
+}
+
 function handleSubmit(e) {
     e.preventDefault();
-    const form = e.target;
+    var form = e.target;
 
     // Clear previous errors
-    form.querySelectorAll('.form-error').forEach(el => el.remove());
-    form.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
+    var oldErrors = form.querySelectorAll('.form-error');
+    for (var i = 0; i < oldErrors.length; i++) oldErrors[i].remove();
+    var oldInvalid = form.querySelectorAll('.input-error');
+    for (var i = 0; i < oldInvalid.length; i++) oldInvalid[i].classList.remove('input-error');
 
-    const required = [
-        { el: form.querySelector('#name'),    label: 'Name' },
-        { el: form.querySelector('#phone'),   label: 'Telefon' },
-        { el: form.querySelector('#email'),   label: 'E-Mail' },
-        { el: form.querySelector('#date'),    label: 'Datum' },
-        { el: form.querySelector('#time'),    label: 'Uhrzeit' },
-        { el: form.querySelector('#adults'),  label: 'Erwachsene' },
+    var fields = [
+        { id: 'name',   label: 'Name' },
+        { id: 'phone',  label: 'Telefon' },
+        { id: 'email',  label: 'E-Mail' },
+        { id: 'date',   label: 'Datum' },
+        { id: 'time',   label: 'Uhrzeit' },
+        { id: 'adults', label: 'Erwachsene' },
     ];
 
-    let firstError = null;
-    required.forEach(({ el, label }) => {
-        if (!el || el.value.trim() === '' || el.value === '') {
-            el.classList.add('input-error');
-            const msg = document.createElement('span');
-            msg.className = 'form-error';
-            msg.textContent = `Bitte ${label} ausfüllen`;
-            el.closest('.form-group').appendChild(msg);
+    var firstError = null;
+    fields.forEach(function(f) {
+        var el = document.getElementById(f.id);
+        if (!el) return;
+        var val = el.value;
+        if (!val || val.trim() === '') {
+            showFieldError(el, f.label);
             if (!firstError) firstError = el;
         }
     });
 
     if (firstError) {
-        firstError.focus();
         firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
     }
@@ -227,9 +241,11 @@ function handleSubmit(e) {
     document.getElementById('formSuccess').style.display = 'block';
     form.reset();
     dateSelect.value = '';
-    timeSelect.innerHTML = '<option value="">Uhrzeit wählen</option>';
+    timeSelect.innerHTML = '<option value="">Uhrzeit w\u00e4hlen</option>';
     depositWarning.style.display = 'none';
-    setTimeout(() => { document.getElementById('formSuccess').style.display = 'none'; }, 6000);
+    setTimeout(function() {
+        document.getElementById('formSuccess').style.display = 'none';
+    }, 6000);
 }
 
 /* ===== HERO PARALLAX (subtle) ===== */
