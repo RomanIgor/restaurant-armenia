@@ -232,26 +232,19 @@
         .hero-instagram {
             display: inline-flex; align-items: center; gap: 10px;
             margin-top: 1.5rem;
-            background: linear-gradient(135deg, rgba(131,58,180,0.55), rgba(253,29,29,0.45), rgba(252,176,69,0.45));
-            border: 1px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            color: #fff;
             font-family: 'Raleway', sans-serif;
-            font-size: 0.78rem; font-weight: 700;
-            letter-spacing: 0.1em; text-transform: uppercase;
+            font-size: 0.8rem; font-weight: 600;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            padding: 14px 36px;
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.7);
             text-decoration: none;
-            padding: 11px 22px;
-            border-radius: 50px;
-            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 4px 18px rgba(131,58,180,0.35);
+            transition: all 0.3s ease;
         }
-        .hero-instagram svg { width: 17px; stroke: #fff; flex-shrink: 0; }
-        .hero-instagram:hover {
-            background: linear-gradient(135deg, rgba(131,58,180,0.8), rgba(253,29,29,0.7), rgba(252,176,69,0.65));
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(131,58,180,0.5);
-        }
+        .hero-instagram svg { width: 16px; stroke: #fff; flex-shrink: 0; }
+        .hero-instagram:hover { background: #fff; color: #831059; }
+        .hero-instagram:hover svg { stroke: #831059; }
 
         .hero-scroll {
             position: absolute; bottom: 2rem; left: 50%;
@@ -779,13 +772,18 @@
             background: var(--white);
         }
         .form-group textarea { resize: vertical; min-height: 120px; }
-        .input-error { border-color: #e53935 !important; background: rgba(229,57,53,0.06) !important; }
+        .input-error { border-color: #e53935 !important; border-width: 2px !important; background: rgba(229,57,53,0.06) !important; }
         .form-error {
             font-family: 'Raleway', sans-serif;
-            font-size: 0.72rem;
+            font-size: 0.75rem;
+            font-weight: 600;
             color: #e53935;
-            margin-top: 2px;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
+        .form-error::before { content: '⚠'; font-size: 0.75rem; }
         .form-success {
             display: none; padding: 14px;
             background: rgba(139,26,43,0.08);
