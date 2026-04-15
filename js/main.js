@@ -189,45 +189,62 @@ adultsSelect.addEventListener('change', checkDeposit);
 childrenSelect.addEventListener('change', checkDeposit);
 
 /* ===== CONTACT FORM ===== */
-var contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+(function() {
+    var form = document.getElementById('contactForm');
+    var submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+    if (!form || !submitBtn) return;
 
-        // Clear old errors
-        var oldMsgs = contactForm.querySelectorAll('[data-err]');
-        for (var i = 0; i < oldMsgs.length; i++) oldMsgs[i].parentNode.removeChild(oldMsgs[i]);
-        var ids = ['name','phone','email','date','time','adults'];
-        for (var i = 0; i < ids.length; i++) {
-            var el = document.getElementById(ids[i]);
-            if (el) el.style.border = '';
-        }
+    var FIELDS = [
+        { id: 'name',   label: 'Name' },
+        { id: 'phone',  label: 'Telefon' },
+        { id: 'email',  label: 'E-Mail' },
+        { id: 'date',   label: 'Datum' },
+        { id: 'time',   label: 'Uhrzeit' },
+        { id: 'adults', label: 'Erwachsene' }
+    ];
 
-        var labels = { name:'Name', phone:'Telefon', email:'E-Mail', date:'Datum', time:'Uhrzeit', adults:'Erwachsene' };
-        var firstErr = null;
-
-        for (var i = 0; i < ids.length; i++) {
-            var el = document.getElementById(ids[i]);
-            if (!el) continue;
-            if (!el.value || el.value.trim() === '') {
-                el.style.border = '2px solid #e53935';
-                el.style.backgroundColor = 'rgba(229,57,53,0.07)';
-                var msg = document.createElement('div');
-                msg.setAttribute('data-err', '1');
-                msg.style.cssText = 'color:#e53935;font-size:12px;font-weight:600;margin-top:5px;';
-                msg.textContent = '\u26a0 Bitte ' + labels[ids[i]] + ' ausf\u00fcllen';
-                el.parentNode.insertBefore(msg, el.nextSibling);
-                if (!firstErr) firstErr = el;
+    function clearErrors() {
+        var banner = document.getElementById('formErrorBanner');
+        if (banner) banner.parentNode.removeChild(banner);
+        for (var i = 0; i < FIELDS.length; i++) {
+            var el = document.getElementById(FIELDS[i].id);
+            if (el) {
+                el.style.border = '';
+                el.style.background = '';
             }
         }
+    }
 
-        if (firstErr) {
-            firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            return;
+    function validate() {
+        clearErrors();
+        var missing = [];
+        for (var i = 0; i < FIELDS.length; i++) {
+            var el = document.getElementById(FIELDS[i].id);
+            if (!el) continue;
+            if (!el.value || el.value === '') {
+                missing.push(FIELDS[i].label);
+                el.style.cssText += '; border: 2px solid #c0392b !important; background: #fff5f5 !important;';
+            }
         }
+        if (missing.length > 0) {
+            var banner = document.createElement('div');
+            banner.id = 'formErrorBanner';
+            banner.style.cssText = 'background:#c0392b;color:#fff;padding:14px 16px;border-radius:6px;margin-bottom:16px;font-size:14px;font-weight:600;line-height:1.5;';
+            banner.innerHTML = '&#9888; Bitte folgende Felder ausf&uuml;llen: <strong>' + missing.join(', ') + '</strong>';
+            form.insertBefore(banner, form.firstChild);
+            banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return false;
+        }
+        return true;
+    }
 
+    submitBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!validate()) return;
         document.getElementById('formSuccess').style.display = 'block';
-        contactForm.reset();
+        form.reset();
+        clearErrors();
         dateSelect.value = '';
         timeSelect.innerHTML = '<option value="">Uhrzeit w\u00e4hlen</option>';
         depositWarning.style.display = 'none';
@@ -235,9 +252,9 @@ if (contactForm) {
             document.getElementById('formSuccess').style.display = 'none';
         }, 6000);
     });
-}
 
-function handleSubmit(e) { e.preventDefault(); }
+    form.addEventListener('submit', function(e) { e.preventDefault(); });
+}());
 
 /* ===== HERO PARALLAX (subtle) ===== */
 const heroBg = document.getElementById('heroBg');
