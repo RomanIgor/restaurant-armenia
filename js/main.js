@@ -256,6 +256,24 @@ childrenSelect.addEventListener('change', checkDeposit);
     form.addEventListener('submit', function(e) { e.preventDefault(); });
 }());
 
+/* ===== IMPRESSUM MODAL ===== */
+function openImpressum() {
+    var m = document.getElementById('impressumModal');
+    m.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+function closeImpressum() {
+    var m = document.getElementById('impressumModal');
+    m.style.display = 'none';
+    document.body.style.overflow = '';
+}
+document.getElementById('impressumModal').addEventListener('click', function(e) {
+    if (e.target === this) closeImpressum();
+});
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeImpressum();
+});
+
 /* ===== HERO PARALLAX (subtle) ===== */
 const heroBg = document.getElementById('heroBg');
 window.addEventListener('scroll', () => {
