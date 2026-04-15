@@ -189,64 +189,55 @@ adultsSelect.addEventListener('change', checkDeposit);
 childrenSelect.addEventListener('change', checkDeposit);
 
 /* ===== CONTACT FORM ===== */
-function showFieldError(el, label) {
-    el.classList.add('input-error');
-    var group = el.parentElement;
-    while (group && !group.classList.contains('form-group')) {
-        group = group.parentElement;
-    }
-    if (group) {
-        var msg = document.createElement('span');
-        msg.className = 'form-error';
-        msg.textContent = '\u26a0 Bitte ' + label + ' ausf\u00fcllen';
-        group.appendChild(msg);
-    }
-}
+var contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-function handleSubmit(e) {
-    e.preventDefault();
-    var form = e.target;
-
-    // Clear previous errors
-    var oldErrors = form.querySelectorAll('.form-error');
-    for (var i = 0; i < oldErrors.length; i++) oldErrors[i].remove();
-    var oldInvalid = form.querySelectorAll('.input-error');
-    for (var i = 0; i < oldInvalid.length; i++) oldInvalid[i].classList.remove('input-error');
-
-    var fields = [
-        { id: 'name',   label: 'Name' },
-        { id: 'phone',  label: 'Telefon' },
-        { id: 'email',  label: 'E-Mail' },
-        { id: 'date',   label: 'Datum' },
-        { id: 'time',   label: 'Uhrzeit' },
-        { id: 'adults', label: 'Erwachsene' },
-    ];
-
-    var firstError = null;
-    fields.forEach(function(f) {
-        var el = document.getElementById(f.id);
-        if (!el) return;
-        var val = el.value;
-        if (!val || val.trim() === '') {
-            showFieldError(el, f.label);
-            if (!firstError) firstError = el;
+        // Clear old errors
+        var oldMsgs = contactForm.querySelectorAll('[data-err]');
+        for (var i = 0; i < oldMsgs.length; i++) oldMsgs[i].parentNode.removeChild(oldMsgs[i]);
+        var ids = ['name','phone','email','date','time','adults'];
+        for (var i = 0; i < ids.length; i++) {
+            var el = document.getElementById(ids[i]);
+            if (el) el.style.border = '';
         }
+
+        var labels = { name:'Name', phone:'Telefon', email:'E-Mail', date:'Datum', time:'Uhrzeit', adults:'Erwachsene' };
+        var firstErr = null;
+
+        for (var i = 0; i < ids.length; i++) {
+            var el = document.getElementById(ids[i]);
+            if (!el) continue;
+            if (!el.value || el.value.trim() === '') {
+                el.style.border = '2px solid #e53935';
+                el.style.backgroundColor = 'rgba(229,57,53,0.07)';
+                var msg = document.createElement('div');
+                msg.setAttribute('data-err', '1');
+                msg.style.cssText = 'color:#e53935;font-size:12px;font-weight:600;margin-top:5px;';
+                msg.textContent = '\u26a0 Bitte ' + labels[ids[i]] + ' ausf\u00fcllen';
+                el.parentNode.insertBefore(msg, el.nextSibling);
+                if (!firstErr) firstErr = el;
+            }
+        }
+
+        if (firstErr) {
+            firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+
+        document.getElementById('formSuccess').style.display = 'block';
+        contactForm.reset();
+        dateSelect.value = '';
+        timeSelect.innerHTML = '<option value="">Uhrzeit w\u00e4hlen</option>';
+        depositWarning.style.display = 'none';
+        setTimeout(function() {
+            document.getElementById('formSuccess').style.display = 'none';
+        }, 6000);
     });
-
-    if (firstError) {
-        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return;
-    }
-
-    document.getElementById('formSuccess').style.display = 'block';
-    form.reset();
-    dateSelect.value = '';
-    timeSelect.innerHTML = '<option value="">Uhrzeit w\u00e4hlen</option>';
-    depositWarning.style.display = 'none';
-    setTimeout(function() {
-        document.getElementById('formSuccess').style.display = 'none';
-    }, 6000);
 }
+
+function handleSubmit(e) { e.preventDefault(); }
 
 /* ===== HERO PARALLAX (subtle) ===== */
 const heroBg = document.getElementById('heroBg');
