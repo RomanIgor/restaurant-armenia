@@ -62,7 +62,7 @@ function applyGalleryFilter(filter) {
         item.classList.toggle('hidden', item.dataset.category !== filter);
     });
 }
-applyGalleryFilter('restaurant');
+applyGalleryFilter('restaurant'); // default tab on load
 document.querySelectorAll('.gallery-tab').forEach(tab => {
     tab.addEventListener('click', () => {
         document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
@@ -83,10 +83,20 @@ document.getElementById('menuTabs').addEventListener('click', (e) => {
 
 /* ===== LIGHTBOX ===== */
 const images = [
-    '1.jpeg','5.jpeg','10.jpeg','11.jpeg',
-    'food_images/20.jpeg','food_images/13.jpeg','food_images/27.jpeg',
-    'food_images/35.jpeg','food_images/28.jpeg','food_images/33.jpeg',
-    'food_images/30.jpeg','food_images/34.jpeg','food_images/32.jpeg'
+    /* Restaurant 0–6 */
+    'restaurants_images/r01.jpeg','restaurants_images/r02.jpeg','restaurants_images/r03.jpeg',
+    'restaurants_images/r04.jpeg','restaurants_images/r05.jpeg','restaurants_images/r06.jpeg',
+    'restaurants_images/r07.jpeg',
+    /* Speisen 7–21 */
+    'food_iamges_variant2/f02.jpeg','food_iamges_variant2/f16.jpeg','food_iamges_variant2/f17.jpeg',
+    'food_iamges_variant2/f07.jpeg','food_iamges_variant2/f03.jpeg','food_iamges_variant2/f12.jpeg',
+    'food_iamges_variant2/f13.jpeg','food_iamges_variant2/f11.jpeg','food_iamges_variant2/f14.jpeg',
+    'food_iamges_variant2/f08.jpeg','food_iamges_variant2/f04.jpeg','food_iamges_variant2/f10.jpeg',
+    'food_iamges_variant2/f05.jpeg','food_iamges_variant2/f06.jpeg','food_iamges_variant2/f01.jpeg',
+    /* Veranstaltungen 22–29 */
+    'restaurants_images/r08.jpeg','restaurants_images/r11.jpeg','restaurants_images/r10.jpeg',
+    'restaurants_images/r12.jpeg','restaurants_images/r09.jpeg','restaurants_images/r13.jpeg',
+    'restaurants_images/r14.jpeg','restaurants_images/r15.jpeg'
 ];
 let currentImg = 0;
 const lightbox = document.getElementById('lightbox');
