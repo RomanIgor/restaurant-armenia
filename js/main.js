@@ -83,17 +83,16 @@ document.getElementById('menuTabs').addEventListener('click', (e) => {
 
 /* ===== LIGHTBOX ===== */
 const images = [
-    /* Restaurant 0–6 */
+    /* Restaurant 0–5 */
     'restaurants_images/r01.jpeg','restaurants_images/r02.jpeg','restaurants_images/r03.jpeg',
     'restaurants_images/r04.jpeg','restaurants_images/r05.jpeg','restaurants_images/r06.jpeg',
-    'restaurants_images/r07.jpeg',
-    /* Speisen 7–21 */
+    /* Speisen 6–20 */
     'food_iamges_variant2/f02.jpeg','food_iamges_variant2/f16.jpeg','food_iamges_variant2/f17.jpeg',
     'food_iamges_variant2/f07.jpeg','food_iamges_variant2/f03.jpeg','food_iamges_variant2/f12.jpeg',
     'food_iamges_variant2/f13.jpeg','food_iamges_variant2/f11.jpeg','food_iamges_variant2/f14.jpeg',
     'food_iamges_variant2/f08.jpeg','food_iamges_variant2/f04.jpeg','food_iamges_variant2/f10.jpeg',
     'food_iamges_variant2/f05.jpeg','food_iamges_variant2/f06.jpeg','food_iamges_variant2/f01.jpeg',
-    /* Veranstaltungen 22–29 */
+    /* Veranstaltungen 21–28 */
     'restaurants_images/r08.jpeg','restaurants_images/r11.jpeg','restaurants_images/r10.jpeg',
     'restaurants_images/r12.jpeg','restaurants_images/r09.jpeg','restaurants_images/r13.jpeg',
     'restaurants_images/r14.jpeg','restaurants_images/r15.jpeg'

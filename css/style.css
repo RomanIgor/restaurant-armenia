@@ -566,17 +566,18 @@
         #galerie { background: var(--cream); }
 
         .gallery-tabs {
-            display: flex; gap: 0.5rem; margin-bottom: 1.5rem;
+            display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;
         }
         .gallery-tab {
             font-family: 'Raleway', sans-serif;
             font-size: 0.72rem; font-weight: 600;
-            letter-spacing: 0.12em; text-transform: uppercase;
-            padding: 8px 20px;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            padding: 8px 18px;
             border: 1px solid var(--stone);
             background: transparent; color: var(--stone);
             cursor: pointer; border-radius: 2px;
             transition: all 0.2s;
+            white-space: nowrap;
         }
         .gallery-tab.active, .gallery-tab:hover {
             background: var(--red); border-color: var(--red); color: var(--white);
@@ -587,6 +588,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: 300px 300px 240px;
+            grid-auto-rows: 240px;
             gap: 8px;
         }
         .gallery-item {
@@ -980,7 +982,7 @@
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 220px); }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 220px); grid-auto-rows: 220px; }
             .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
             .about-img-accent { display: none; }
             .anlaesse-grid { grid-template-columns: 1fr 1fr; }
@@ -1222,9 +1224,11 @@
             .armenien-cards { gap: 0.9rem; }
             .armenien-card { padding: 1.2rem; }
 
+            .gallery-tab { padding: 7px 12px; font-size: 0.67rem; letter-spacing: 0.07em; }
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
                 grid-template-rows: 200px 180px 180px 180px;
+                grid-auto-rows: 180px;
             }
             .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
 
@@ -1276,9 +1280,11 @@
 
         @media (max-width: 480px) {
             :root { --section-pad: 44px; }
+            .gallery-tab { padding: 6px 10px; font-size: 0.63rem; letter-spacing: 0.05em; }
             .gallery-grid {
                 grid-template-columns: 1fr 1fr;
                 grid-template-rows: 180px 160px 160px 160px;
+                grid-auto-rows: 160px;
             }
             .gallery-item:nth-child(1) { grid-column: 1 / 3; }
             .hero-title { font-size: clamp(2.2rem, 13vw, 3rem); }
