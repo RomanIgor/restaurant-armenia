@@ -270,8 +270,24 @@ function closeImpressum() {
 document.getElementById('impressumModal').addEventListener('click', function(e) {
     if (e.target === this) closeImpressum();
 });
+
+/* ===== DATENSCHUTZ MODAL ===== */
+function openDatenschutz() {
+    var m = document.getElementById('datenschutzModal');
+    m.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+function closeDatenschutz() {
+    var m = document.getElementById('datenschutzModal');
+    m.style.display = 'none';
+    document.body.style.overflow = '';
+}
+document.getElementById('datenschutzModal').addEventListener('click', function(e) {
+    if (e.target === this) closeDatenschutz();
+});
+
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeImpressum();
+    if (e.key === 'Escape') { closeImpressum(); closeDatenschutz(); }
 });
 
 /* ===== HERO PARALLAX (subtle) ===== */
