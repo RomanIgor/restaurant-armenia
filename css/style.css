@@ -1073,12 +1073,12 @@
         .anlass-note p:last-child { margin-bottom: 0; }
 
         .anlaesse-photos {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            justify-content: center;
             gap: 1.5rem;
             margin-top: 3rem;
         }
-        .anlaesse-photo { overflow: hidden; height: 300px; position: relative; }
+        .anlaesse-photo { overflow: hidden; height: 300px; position: relative; width: 100%; max-width: 560px; }
         .anlaesse-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .anlaesse-photo:hover img { transform: scale(1.04); }
         .anlaesse-photo-caption {
