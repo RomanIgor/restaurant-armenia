@@ -1,3 +1,9 @@
+/* ===== SCROLL RESTORATION FIX ===== */
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 /* ===== NAVBAR ===== */
 const navbar = document.getElementById('navbar');
 const fab = document.getElementById('fab');
@@ -92,10 +98,14 @@ const images = [
     'food_iamges_variant2/f13.jpeg','food_iamges_variant2/f11.jpeg','food_iamges_variant2/f14.jpeg',
     'food_iamges_variant2/f08.jpeg','food_iamges_variant2/f04.jpeg','food_iamges_variant2/f10.jpeg',
     'food_iamges_variant2/f05.jpeg','food_iamges_variant2/f06.jpeg','food_iamges_variant2/f01.jpeg',
-    /* Veranstaltungen 21–28 */
+    /* Veranstaltungen 21–40 */
     'restaurants_images/r08.jpeg','restaurants_images/r11.jpeg','restaurants_images/r10.jpeg',
     'restaurants_images/r12.jpeg','restaurants_images/r09.jpeg','restaurants_images/r13.jpeg',
-    'restaurants_images/r14.jpeg','restaurants_images/r15.jpeg'
+    'restaurants_images/r14.jpeg','restaurants_images/r15.jpeg',
+    'Veranstaltungen/v01.jpeg','Veranstaltungen/v02.jpeg','Veranstaltungen/v03.jpeg',
+    'Veranstaltungen/v04.jpeg','Veranstaltungen/v05.jpeg','Veranstaltungen/v06.jpeg',
+    'Veranstaltungen/v07.jpeg','Veranstaltungen/v08.jpeg','Veranstaltungen/v09.jpeg',
+    'Veranstaltungen/v10.jpeg','Veranstaltungen/v11.jpeg','Veranstaltungen/v12.jpeg'
 ];
 let currentImg = 0;
 const lightbox = document.getElementById('lightbox');
