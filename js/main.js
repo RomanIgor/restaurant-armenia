@@ -102,7 +102,7 @@ const images = [
     'restaurants_images/r08.jpeg','restaurants_images/r11.jpeg','restaurants_images/r10.jpeg',
     'restaurants_images/r12.jpeg','restaurants_images/r09.jpeg','restaurants_images/r13.jpeg',
     'restaurants_images/r14.jpeg','restaurants_images/r15.jpeg',
-    'Veranstaltungen/v01.jpeg','Veranstaltungen/v02.jpeg','Veranstaltungen/v03.jpeg',
+    'Veranstaltungen/v01.jpeg','Veranstaltungen/v02.jpeg',
     'Veranstaltungen/v04.jpeg','Veranstaltungen/v05.jpeg','Veranstaltungen/v06.jpeg',
     'Veranstaltungen/v07.jpeg','Veranstaltungen/v08.jpeg','Veranstaltungen/v09.jpeg',
     'Veranstaltungen/v10.jpeg','Veranstaltungen/v11.jpeg','Veranstaltungen/v12.jpeg'
