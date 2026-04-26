@@ -221,6 +221,7 @@ childrenSelect.addEventListener('change', checkDeposit);
         { id: 'time',   label: 'Uhrzeit' },
         { id: 'adults', label: 'Erwachsene' }
     ];
+    var datenschutzWrap = document.getElementById('datenschutzWrap');
 
     function clearErrors() {
         var banner = document.getElementById('formErrorBanner');
@@ -232,6 +233,7 @@ childrenSelect.addEventListener('change', checkDeposit);
                 el.style.background = '';
             }
         }
+        if (datenschutzWrap) datenschutzWrap.classList.remove('error');
     }
 
     function validate() {
@@ -244,6 +246,11 @@ childrenSelect.addEventListener('change', checkDeposit);
                 missing.push(FIELDS[i].label);
                 el.style.cssText += '; border: 2px solid #c0392b !important; background: #fff5f5 !important;';
             }
+        }
+        var datenschutzChecked = document.getElementById('datenschutz') && document.getElementById('datenschutz').checked;
+        if (!datenschutzChecked) {
+            missing.push('Datenschutz');
+            if (datenschutzWrap) datenschutzWrap.classList.add('error');
         }
         if (missing.length > 0) {
             var banner = document.createElement('div');
@@ -261,19 +268,65 @@ childrenSelect.addEventListener('change', checkDeposit);
         e.preventDefault();
         e.stopPropagation();
         if (!validate()) return;
-        document.getElementById('formSuccess').style.display = 'block';
-        form.reset();
-        clearErrors();
-        dateSelect.value = '';
-        timeSelect.innerHTML = '<option value="">Uhrzeit w\u00e4hlen</option>';
-        depositWarning.style.display = 'none';
-        setTimeout(function() {
-            document.getElementById('formSuccess').style.display = 'none';
-        }, 6000);
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Wird gesendet...';
+
+        var data = new FormData();
+        data.append('name',     document.getElementById('name').value);
+        data.append('phone',    document.getElementById('phone').value);
+        data.append('email',    document.getElementById('email').value);
+        data.append('date',     document.getElementById('date').value);
+        data.append('time',     document.getElementById('time').value);
+        data.append('adults',   document.getElementById('adults').value);
+        data.append('children', document.getElementById('children').value);
+        data.append('message',  document.getElementById('message').value);
+        data.append('datenschutz', 'Ja');
+
+        fetch('send_mail.php', { method: 'POST', body: data })
+            .then(function(res) { return res.json(); })
+            .then(function(json) {
+                if (json.success) {
+                    document.getElementById('formSuccess').style.display = 'block';
+                    form.reset();
+                    clearErrors();
+                    dateSelect.value = '';
+                    timeSelect.innerHTML = '<option value="">Uhrzeit w\u00e4hlen</option>';
+                    depositWarning.style.display = 'none';
+                    if (datenschutzWrap) datenschutzWrap.classList.remove('error');
+                    setTimeout(function() {
+                        document.getElementById('formSuccess').style.display = 'none';
+                    }, 6000);
+                } else {
+                    alert('Fehler: ' + (json.message || 'Unbekannter Fehler'));
+                }
+            })
+            .catch(function() {
+                alert('Verbindungsfehler. Bitte versuchen Sie es erneut.');
+            })
+            .finally(function() {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Reservierung anfragen';
+            });
     });
 
     form.addEventListener('submit', function(e) { e.preventDefault(); });
 }());
+
+/* ===== ALLERGENE MODAL ===== */
+function openAllergene() {
+    var m = document.getElementById('allergeneModal');
+    m.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+function closeAllergene() {
+    var m = document.getElementById('allergeneModal');
+    m.style.display = 'none';
+    document.body.style.overflow = '';
+}
+document.getElementById('allergeneModal').addEventListener('click', function(e) {
+    if (e.target === this) closeAllergene();
+});
 
 /* ===== IMPRESSUM MODAL ===== */
 function openImpressum() {
@@ -306,7 +359,7 @@ document.getElementById('datenschutzModal').addEventListener('click', function(e
 });
 
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closeImpressum(); closeDatenschutz(); }
+    if (e.key === 'Escape') { closeImpressum(); closeDatenschutz(); closeAllergene(); }
 });
 
 /* ===== HERO PARALLAX (subtle) ===== */

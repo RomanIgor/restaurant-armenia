@@ -604,11 +604,11 @@
         .gallery-item:hover img { transform: scale(1.07); }
         .gallery-overlay {
             position: absolute; top: 0; right: 0; bottom: 0; left: 0;
-            background: rgba(139,26,43,0.0);
+            background: rgba(0,0,0,0.0);
             transition: background 0.3s;
             display: flex; align-items: center; justify-content: center;
         }
-        .gallery-item:hover .gallery-overlay { background: rgba(139,26,43,0.35); }
+        .gallery-item:hover .gallery-overlay { background: rgba(0,0,0,0.25); }
         .gallery-overlay svg { opacity: 0; transition: opacity 0.3s; fill: white; width: 36px; }
         .gallery-item:hover .gallery-overlay svg { opacity: 1; }
 
@@ -775,6 +775,53 @@
         }
         .form-group textarea { resize: vertical; min-height: 120px; }
         .input-error { border-color: #e53935 !important; border-width: 2px !important; background: rgba(229,57,53,0.06) !important; }
+        .datenschutz-group { display: flex; flex-direction: column; gap: 6px; }
+        .datenschutz-checkbox-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: none;
+            padding: 4px 0;
+            cursor: pointer;
+        }
+        .datenschutz-checkbox-wrap.error { outline: 1px solid #e53935; border-radius: 4px; padding: 4px 6px; }
+        .datenschutz-checkbox-wrap input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            min-width: 14px;
+            border: 1px solid #aaa;
+            border-radius: 3px;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .datenschutz-checkbox-wrap input[type="checkbox"]:checked {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+        .datenschutz-checkbox-wrap input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            left: 3px;
+            top: 0px;
+            width: 5px;
+            height: 8px;
+            border: 2px solid #fff;
+            border-top: none;
+            border-left: none;
+            transform: rotate(45deg);
+        }
+        .datenschutz-checkbox-wrap span {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.72rem;
+            color: #888;
+            line-height: 1.4;
+        }
+        .datenschutz-checkbox-wrap span a { color: var(--gold); text-decoration: underline; cursor: pointer; }
         .form-error {
             font-family: 'Raleway', sans-serif;
             font-size: 0.75rem;
